@@ -146,12 +146,21 @@
                 
                 <div class="hidden lg:block">
                     <div class="glass-card p-4 rounded-[2rem] border-sky-500/20 shadow-2xl relative">
-                        <div class="bg-slate-950 rounded-[1.5rem] aspect-video flex items-center justify-center radar-scan relative overflow-hidden">
+                        <div class="bg-slate-950 rounded-[1.5rem] aspect-video flex items-center justify-center radar-scan relative overflow-hidden" 
+                             style="background-image: url('img/print_sophiaapp.png');">
+                            
+                            <div class="absolute inset-0 bg-slate-950/40"></div>
                             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#38bdf8 1px, transparent 1px); background-size: 30px 30px;"></div>
-                            <i class="fa-solid fa-crosshairs text-sky-500/20 text-9xl absolute"></i>
+                            
+                            <i class="fa-solid fa-crosshairs text-sky-500/30 text-9xl absolute"></i>
+                            
                             <div class="z-10 text-center">
-                                <div class="mono text-sky-400 text-xs mb-2">SOPHIA GEO ENGINE</div>
-                                <div class="text-slate-500 text-[10px] uppercase tracking-widest">Aguardando Link de Satélite...</div>
+                                <div class="mono text-sky-400 text-xs mb-2 bg-slate-900/80 px-3 py-1 rounded-full backdrop-blur-sm border border-sky-500/30">
+                                    SOPHIA GEO ENGINE v2.5
+                                </div>
+                                <div class="text-slate-300 text-[10px] uppercase tracking-widest font-semibold drop-shadow-md">
+                                    Link de Satélite Ativo
+                                </div>
                             </div>
                         </div>
                     </div>
