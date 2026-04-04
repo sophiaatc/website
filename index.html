@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOPHIA ATC Systems | Consciência Situacional e Segurança Operacional</title>
-
-    <meta name="description" content="SOPHIA ATC - Integração de dados operacionais para aumento da consciência situacional em ambientes ATS.">
-    
+    <meta name="description" content="SOPHIA ATC Systems: integração de dados operacionais, meteorológicos e normativos para aumento da consciência situacional em ambientes ATS.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -18,6 +15,10 @@
             --brand-secondary: #818cf8;
             --bg-dark: #0a0f1a;
             --card-bg: rgba(30, 41, 59, 0.5);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -32,12 +33,13 @@
             background: var(--card-bg);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
 
         .gradient-text {
@@ -61,8 +63,9 @@
             height: 200%;
             top: -50%;
             left: -50%;
-            background: conic-gradient(from 0deg, transparent 0%, rgba(56,189,248,0.08) 10%, transparent 20%);
+            background: conic-gradient(from 0deg, transparent 0%, rgba(56, 189, 248, 0.08) 10%, transparent 20%);
             animation: rotate 6s linear infinite;
+            pointer-events: none;
         }
 
         @keyframes rotate {
@@ -82,139 +85,310 @@
         }
     </style>
 </head>
+<body class="scroll-smooth">
 
-<body>
+    <!-- Header / Navigation -->
+    <nav class="fixed w-full z-40 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="flex items-center justify-center">
+                        <img src="img/sophia-atc-s.png" alt="Logo SOPHIA" class="w-12 h-12 object-contain">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tighter text-white">SOPHIA <span class="text-sky-400">ATC</span></span>
+                        <span class="text-[11px] uppercase tracking-[0.3em] text-slate-500 font-semibold">Air Traffic Service Systems Engineering</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-10 text-sm font-medium">
+                    <a href="#solucoes" class="text-slate-400 hover:text-sky-400 transition-colors">Sistemas</a>
+                    <a href="#tecnologia" class="text-slate-400 hover:text-sky-400 transition-colors">Tecnologia</a>
+                    <a href="#safety" class="text-slate-400 hover:text-sky-400 transition-colors">Segurança</a>
+                    <a href="#patente" class="text-slate-400 hover:text-sky-400 transition-colors">Inovação</a>
+                    <a href="mailto:contato@sophiaatc.com.br" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition-all shadow-lg shadow-sky-900/20">
+                        Contato Técnico
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<!-- NAV -->
-<nav class="fixed w-full z-40 glass-card">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="flex justify-between h-16 items-center">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-sky-600/10 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-600/10 blur-[120px] rounded-full"></div>
+        </div>
 
-            <div class="flex items-center space-x-2">
-                <img src="img/sophia-atc-s.png" class="w-10 h-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-[1.1] mb-6">
+                        A Próxima Geração da <span class="gradient-text">Consciência Situacional</span> <br>no Controle de Tráfego Aéreo.
+                    </h1>
+                    <p class="text-lg text-slate-400 mb-10 max-w-xl">
+                        A suíte SOPHIA integra meteorologia de alta resolução e documentação auditável diretamente no console ATC, reduzindo a fragmentação informacional e fortalecendo a segurança da navegação aérea.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center lg:justify-start">
+                        <a href="#solucoes" class="bg-white text-slate-950 px-8 py-4 rounded-xl font-bold hover:bg-sky-400 hover:text-white transition-all transform hover:scale-105">
+                            Explorar Módulos
+                        </a>
+                        <div class="flex items-center space-x-4 text-slate-500 text-sm">
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px]">APP</div>
+                                <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px]">ACC</div>
+                                <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px]">TWR</div>
+                                <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px]">FIS</div>
+                                <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px]">AFIS</div>
+                            </div>
+                            <span>Baseado em cenários operacionais reais</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden lg:block">
+                    <div class="glass-card p-4 rounded-[2rem] border-sky-500/20 shadow-2xl relative">
+                        <div class="bg-slate-950 rounded-[1.5rem] aspect-video flex items-center justify-center radar-scan relative overflow-hidden"
+                             style="background-image: url('img/print_sophiaapp.png');">
+
+                            <div class="absolute inset-0 bg-slate-950/40"></div>
+                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#38bdf8 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+                            <i class="fa-solid fa-crosshairs text-sky-500/25 text-9xl absolute"></i>
+
+                            <div class="z-10 text-center">
+                                <div class="mono text-sky-400 text-xs mb-2 bg-slate-900/80 px-3 py-1 rounded-full backdrop-blur-sm border border-sky-500/30 inline-block">
+                                    SOPHIA GEO AIRSPACE
+                                </div>
+                                <div class="text-slate-300 text-[10px] uppercase tracking-widest font-semibold drop-shadow-md">
+                                    Satélite GOES 19
+                                </div>
+                            </div>
+
+                            <div class="absolute bottom-4 left-4 text-[10px] text-sky-300 mono bg-black/50 px-2 py-1 rounded z-10">
+                                GEO | IR | SATELLITE FEED ACTIVE
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Solutions -->
+    <section id="solucoes" class="py-32 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-20">
+                <h2 class="text-3xl lg:text-5xl font-bold mb-6">Concretização <span class="text-sky-400">Multimodular.</span></h2>
+                <p class="text-slate-400">A arquitetura SOPHIA é adaptável a cada órgão de Serviço de Tráfego Aéreo (ATS), compartilhando a mesma base de segurança cibernética e auditoria de dados.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- TWR / AFIS -->
+                <div class="glass-card p-10 rounded-3xl border-l-4 border-l-emerald-500">
+                    <div class="flex items-center gap-4 mb-8 flex-wrap">
+                        <div class="flex items-center justify-center text-emerald-400 text-2xl">
+                            <img src="img/sophia-twr.png" alt="Logo SOPHIA TWR" class="w-16 h-16 object-contain">
+                        </div>
+                        <div class="flex items-center justify-center text-emerald-400 text-2xl">
+                            <img src="img/sophia-atc-s.png" alt="Logo SOPHIA Base" class="w-16 h-16 object-contain">
+                        </div>
+                        <span class="mono text-[10px] text-slate-500 tracking-widest uppercase">Módulos TWR & AFIS</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Torre de Controle e AFIS</h3>
+                    <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                        Focado em infraestrutura de solo, meteorologia e sistemas de controle de aeródromo. Inclui ferramentas vitais para a <strong>Prevenção de Incursão em Pista (PPD)</strong> durante pousos e decolagens.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Prevenção de Incursão em Pista</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Infraestrutura de Solo</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Cartas e Checklists</li>
+                        </ul>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Publicações e Normas</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Meteorologia Local</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- APP / ACC / FIS -->
+                <div class="glass-card p-10 rounded-3xl border-l-4 border-l-sky-500">
+                    <div class="flex items-center gap-4 mb-8 flex-wrap">
+                        <div class="flex items-center justify-center text-sky-400 text-2xl">
+                            <img src="img/sophia-acc.png" alt="Logo SOPHIA ACC" class="w-16 h-16 object-contain">
+                        </div>
+                        <div class="flex items-center justify-center text-sky-400 text-2xl">
+                            <img src="img/sophia-app.png" alt="Logo SOPHIA APP" class="w-16 h-16 object-contain">
+                        </div>
+                        <div class="flex items-center justify-center text-sky-400 text-2xl">
+                            <img src="img/geo_big.png" alt="Logo SOPHIA GEO" class="w-16 h-16 object-contain">
+                        </div>
+                        <span class="mono text-[10px] text-slate-500 tracking-widest uppercase">Módulos APP, ACC & FIS</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Controle de Área e Aproximação</h3>
+                    <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                        Suporte avançado para o gerenciamento de espaços aéreos condicionados e meteorologia de fundo em rota. Centraliza o <strong>Dashboard de Alertas</strong> e informações críticas da FIR/TMA.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-500"></i> Meteorologia de Fundo</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-500"></i> Dashboard de Alertas</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-500"></i> Espaços Condicionados</li>
+                        </ul>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-500"></i> Cartas Aeronáuticas</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-500"></i> Checklists e Normas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Deep Dive -->
+    <section id="tecnologia" class="py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div>
-                    <div class="font-bold">SOPHIA <span class="text-sky-400">ATC</span></div>
-                    <div class="text-[10px] text-slate-500 tracking-widest">ATS SYSTEMS ENGINEERING</div>
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-8 text-white">Tecnologia <span class="gradient-text">Não Invasiva.</span></h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Nossa arquitetura de execução encapsulada permite que o SOPHIA opere em consoles certificados (STVD) sem alterar o código-fonte original ou comprometer a segurança do sistema primário de radar.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <div class="text-sky-400 text-xl"><i class="fa-solid fa-database"></i></div>
+                            <div>
+                                <h4 class="font-bold mb-1">Processamento netCDF4</h4>
+                                <p class="text-xs text-slate-400">Inserção direta e processamento de dados brutos do satélite GOES 19 via servidor dedicado isolado, garantindo alta fidelidade e baixa latência.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <div class="text-sky-400 text-xl"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div>
+                                <h4 class="font-bold mb-1">Segurança e Auditoria</h4>
+                                <p class="text-xs text-slate-400">Toda a suíte compartilha uma base robusta de auditoria digital, registrando cada interação para materialidade em investigações.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/30 p-8 rounded-3xl border border-white/10">
+                    <h3 class="mono text-xs uppercase tracking-widest text-slate-500 mb-8">Infraestrutura Operacional</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl">
+                            <span class="text-sm">Rede Operacional (LAN ATC)</span>
+                            <span class="text-[10px] px-2 py-1 bg-sky-500/20 text-sky-400 rounded">Isolada</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl">
+                            <span class="text-sm">Coleta de Satélite (WAN)</span>
+                            <span class="text-[10px] px-2 py-1 bg-amber-500/20 text-amber-400 rounded">Gateway Unidirecional</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl">
+                            <span class="text-sm">Sistema Hospedeiro</span>
+                            <span class="text-[10px] px-2 py-1 bg-slate-800 text-slate-300 rounded">CentOS / RedHat / Ubuntu</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 p-4 border border-sky-500/20 rounded-xl bg-sky-500/5">
+                        <p class="text-[11px] text-sky-300 italic text-center">"O SOPHIA opera como uma camada de inteligência, preservando integralmente a certificação do STVD."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Section -->
+    <section id="safety" class="py-32 bg-sky-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-8">Materialidade em Investigação.</h2>
+            <p class="text-sky-100 mb-12 text-lg max-w-3xl mx-auto">
+                Substituímos o papel e a caneta por um lastro probatório inquestionável. O SOPHIA permite reconstruir com exatidão o cenário informativo disponível ao controlador no momento de qualquer ocorrência.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/10 p-6 rounded-2xl">
+                    <div class="text-3xl font-bold mb-2">100%</div>
+                    <div class="text-xs uppercase font-semibold text-sky-200">Eventos Auditados</div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl">
+                    <div class="text-3xl font-bold mb-2">Prevenção</div>
+                    <div class="text-xs uppercase font-semibold text-sky-200">de Incursão em Pista</div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl">
+                    <div class="text-3xl font-bold mb-2">Zero</div>
+                    <div class="text-xs uppercase font-semibold text-sky-200">Distração Externa</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional / Placeholder Innovation Section -->
+    <section id="patente" class="py-24 bg-slate-900/20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-6">Inovação Aplicada</h2>
+            <p class="text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                O desenvolvimento da suíte SOPHIA está orientado à integração coerente de múltiplas camadas informacionais em ambientes ATS, com ênfase em usabilidade operacional, rastreabilidade e resiliência arquitetural.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="flex items-center justify-center">
+                            <img src="img/sophia-atc-s.png" alt="Logo SOPHIA" class="w-10 h-10 object-contain">
+                        </div>
+                        <span class="text-2xl font-bold text-white">SOPHIA <span class="text-sky-400">ATC</span></span>
+                    </div>
+                    <p class="text-slate-500 text-xs max-w-xs">
+                        Engenharia dedicada à segurança da navegação aérea e modernização de infraestruturas críticas.
+                    </p>
+                </div>
+                <div class="text-sm text-slate-500">
+                    <h5 class="font-bold mb-4 text-slate-300">Contato</h5>
+                    <a href="mailto:contato@sophiaatc.com.br" class="hover:text-sky-400">contato@sophiaatc.com.br</a>
                 </div>
             </div>
 
-            <div class="hidden md:flex space-x-8 text-sm">
-                <a href="#solucoes" class="hover:text-sky-400">Sistemas</a>
-                <a href="#tecnologia" class="hover:text-sky-400">Tecnologia</a>
-                <a href="#safety" class="hover:text-sky-400">Segurança</a>
+            <div class="border-t border-white/5 pt-8">
+                <p class="text-[10px] text-slate-600 max-w-3xl mb-4 leading-relaxed">
+                    SOPHIA é uma iniciativa de engenharia voltada ao estudo e desenvolvimento de ferramentas de apoio à consciência situacional em ambientes ATS. Este material possui caráter técnico-institucional.
+                </p>
 
-                <a href="mailto:contato@sophiaatc.com.br" 
-                   class="px-4 py-2 bg-sky-600 rounded-lg">
-                   Contato Técnico
-                </a>
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
+                    <span>&copy; 2026 SOPHIA ATC Systems Engineering. Todos os direitos reservados.</span>
+                    <span>CNPJ 66.057.989/0001-88</span>
+                </div>
             </div>
-
         </div>
-    </div>
-</nav>
+    </footer>
 
-<!-- HERO -->
-<section class="min-h-screen flex items-center pt-20">
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, observerOptions);
 
-<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 px-6">
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('scroll-reveal');
+            observer.observe(section);
+        });
 
-<div>
-<h1 class="text-5xl font-bold mb-6">
-Consciência Situacional <span class="gradient-text">Integrada</span>
-</h1>
-
-<p class="text-slate-400 mb-8">
-Integração de dados operacionais, meteorológicos e normativos diretamente no ambiente ATS.
-</p>
-
-<a href="#solucoes" class="bg-white text-black px-6 py-3 rounded-lg font-bold">
-Explorar Arquitetura
-</a>
-</div>
-
-<div class="glass-card p-4 rounded-3xl">
-
-<div class="radar-scan aspect-video rounded-xl"
-style="background-image:url('img/print_sophiaapp.png')">
-
-<div class="absolute bottom-3 left-3 text-[10px] mono bg-black/50 px-2 py-1 rounded">
-GEO | SAT DATA ACTIVE
-</div>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- SOLUCOES -->
-<section id="solucoes" class="py-24">
-
-<div class="max-w-6xl mx-auto px-6">
-
-<h2 class="text-3xl font-bold mb-10">
-Arquitetura Multimodular
-</h2>
-
-<div class="grid md:grid-cols-2 gap-8">
-
-<div class="glass-card p-8 rounded-2xl">
-<h3 class="text-xl font-bold mb-4">TWR / AFIS</h3>
-<p class="text-slate-400 text-sm">
-Suporte à operação de aeródromo com foco em prevenção e integração de dados locais.
-</p>
-</div>
-
-<div class="glass-card p-8 rounded-2xl">
-<h3 class="text-xl font-bold mb-4">APP / ACC</h3>
-<p class="text-slate-400 text-sm">
-Gestão de espaço aéreo com integração de meteorologia e dados estratégicos.
-</p>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- SAFETY -->
-<section id="safety" class="py-24 bg-sky-600 text-center text-white">
-
-<h2 class="text-4xl font-bold mb-6">
-Materialidade Operacional
-</h2>
-
-<p class="max-w-3xl mx-auto">
-Reconstrução precisa do cenário informacional disponível ao operador.
-</p>
-
-</section>
-
-<!-- FOOTER -->
-<footer class="py-20 border-t border-white/5 text-center">
-
-<p class="text-xs text-slate-500">
-SOPHIA é uma iniciativa independente de engenharia voltada ao estudo de integração de dados operacionais em ambientes ATS.
-Este material possui caráter técnico e não constitui oferta comercial a órgãos públicos.
-</p>
-
-<div class="mt-6 text-[10px] text-slate-600">
-© 2026 SOPHIA ATC Systems Engineering • CNPJ 66.057.989/0001-88
-</div>
-
-</footer>
-
-<script>
-const observer = new IntersectionObserver(entries => {
-entries.forEach(e => e.isIntersecting && e.target.classList.add('active'));
-});
-
-document.querySelectorAll('section').forEach(s => {
-s.classList.add('scroll-reveal');
-observer.observe(s);
-});
-</script>
-
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 15, 26, 0.95)';
+                nav.style.padding = '0.35rem 0';
+            } else {
+                nav.style.background = 'rgba(30, 41, 59, 0.5)';
+                nav.style.padding = '0.75rem 0';
+            }
+        });
+    </script>
 </body>
 </html>
