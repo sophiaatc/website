@@ -64,6 +64,7 @@
                 <div class="hidden md:flex items-center space-x-10 text-sm font-medium">
                     <a href="index.html" class="text-slate-400 hover:text-emerald-400 transition-colors">Home</a>
                     <a href="about.html" class="text-slate-400 hover:text-emerald-400 transition-colors">Empresa</a>
+                    <a href="#fluxo-goes" class="text-slate-400 hover:text-emerald-400 transition-colors">Fluxo GOES 19</a>
                     <a href="#recursos" class="text-slate-400 hover:text-emerald-400 transition-colors">Recursos</a>
                     <a href="#especificacoes" class="text-slate-400 hover:text-emerald-400 transition-colors">Especificações</a>
                     <a href="contato.html" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow-lg shadow-emerald-950/20">
@@ -76,6 +77,7 @@
                 <div id="mobileMenu" class="hidden absolute top-16 left-0 w-full bg-slate-900 p-6 flex flex-col space-y-4">
                     <a href="index.html">Home</a>
                     <a href="about.html">Empresa</a>
+                    <a href="#fluxo-goes">Fluxo GOES 19</a>
                     <a href="#recursos">Recursos</a>
                     <a href="#especificacoes">Especificações</a>
                     <a href="contato.html">Contato</a>
@@ -105,8 +107,8 @@
                             Solicitar Demonstração
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="#visao-geral" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
-                            Sobre a Tecnologia
+                        <a href="#fluxo-goes" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                            Ver Fluxo GOES 19
                         </a>
                     </div>
                 </div>
@@ -151,6 +153,155 @@
                             <span class="text-slate-400">Auditoria</span>
                             <span class="text-white font-semibold">Eventos registrados</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fluxo-goes" class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mb-14">
+                <div class="inline-flex items-center gap-3 rounded-full border border-sky-500/20 bg-sky-500/10 px-4 py-2 mb-6">
+                    <img src="img/goes_small.png" alt="Logo GOES" class="w-8 h-8 object-contain">
+                    <span class="mono text-xs uppercase tracking-[0.25em] text-sky-300">Pipeline meteorológico GOES 19</span>
+                </div>
+                <h2 class="text-4xl font-bold mb-5">Ênfase na <span class="text-sky-400">obtenção, processamento e exibição</span> das imagens de satélite</h2>
+                <p class="text-slate-400 text-lg leading-relaxed">
+                    O diferencial do SOPHIA GEO dentro do ecossistema do SOPHIA APP está no fluxo controlado de coleta das imagens do <strong>GOES 19</strong> (<strong>Geostationary Operational Environmental Satellite</strong>), obtidas via <strong>NOAA</strong> (<strong>National Oceanic and Atmospheric Administration</strong>), a mesma fonte de referência utilizada por plataformas como o <strong>INPE</strong> (<strong>Instituto Nacional de Pesquisas Espaciais</strong>) e a <strong>REDEMET</strong> (<strong>Rede de Meteorologia do Comando da Aeronáutica</strong>), portal de meteorologia aeronáutica do DECEA. A partir dessa origem confiável, o sistema trata o dado bruto de nuvens e entrega a imagem já processada para leitura operacional imediata.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-[1.3fr_0.7fr] gap-8 items-start">
+                <div class="glass-card rounded-[2rem] p-8 border-sky-500/20">
+                    <div class="flex items-center justify-between gap-4 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Fluxo do dado até a tela</h3>
+                            <p class="text-slate-400 mt-2">Da recepção do arquivo bruto ao produto operacional exibido no console.</p>
+                        </div>
+                        <div class="hidden sm:flex items-center gap-3 rounded-2xl bg-slate-950 px-4 py-3 border border-white/5">
+                            <img src="img/geo_big.png" alt="Logo SOPHIA GEO" class="w-10 h-10 object-contain">
+                            <img src="img/goes_small.png" alt="GOES 19" class="w-10 h-10 object-contain">
+                            <div class="flex flex-col">
+                                <span class="mono text-[11px] uppercase tracking-[0.25em] text-emerald-300">SOPHIA GEO</span>
+                                <span class="mono text-[11px] uppercase tracking-[0.25em] text-sky-300">GOES 19</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4">
+                        <div class="rounded-3xl bg-slate-950/90 border border-white/5 p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="mono text-[10px] uppercase tracking-[0.25em] text-sky-300">Etapa 01</span>
+                                <img src="img/goes_small.png" alt="Logo GOES" class="w-10 h-10 object-contain">
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Aquisição</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">O SOPHIA GEO obtém os dados do GOES 19 em formato bruto, preservando a integridade da informação meteorológica original.</p>
+                        </div>
+
+                        <div class="rounded-3xl bg-slate-950/90 border border-white/5 p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="mono text-[10px] uppercase tracking-[0.25em] text-amber-300">Etapa 02</span>
+                                <div class="flex items-center gap-2">
+                                    <img src="img/firewall.png" alt="Firewall" class="w-10 h-10 object-contain">
+                                    <img src="img/server.png" alt="Servidor" class="w-10 h-10 object-contain">
+                                </div>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Isolamento e ingestão</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">A coleta entra por uma camada segregada, com proteção de rede e servidor dedicado para ingestão segura do pacote meteorológico.</p>
+                        </div>
+
+                        <div class="rounded-3xl bg-slate-950/90 border border-white/5 p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="mono text-[10px] uppercase tracking-[0.25em] text-emerald-300">Etapa 03</span>
+                                <img src="img/nc_raw.png" alt="Dados brutos de nuvens GOES 19" class="w-14 h-14 rounded-xl object-cover border border-white/10">
+                            </div>
+                            <h4 class="text-lg font-semibold leading-tight mb-2">Processamento</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Os dados `netCDF4` de nuvens são decodificados, tratados e convertidos em produto visual de alta leitura para o cenário operacional.</p>
+                        </div>
+
+                        <div class="rounded-3xl bg-slate-950/90 border border-white/5 p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="mono text-[10px] uppercase tracking-[0.25em] text-violet-300">Etapa 04</span>
+                                <img src="img/weather_pc.png" alt="Estação meteorológica" class="w-10 h-10 object-contain">
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Exibição operacional</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">A imagem processada é disponibilizada ao operador no SOPHIA, pronta para interpretação imediata e apoio à decisão.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-3 mt-4 text-center text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                        <div>GOES 19</div>
+                        <div>Firewall + Server</div>
+                        <div>Tratamento de nuvens</div>
+                        <div>Console operacional</div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass-card rounded-[2rem] p-6 border-white/10">
+                        <div class="flex items-center justify-between gap-4 mb-4">
+                            <div>
+                                <span class="mono text-[10px] uppercase tracking-[0.25em] text-slate-500">Dado bruto</span>
+                                <h3 class="text-xl font-bold mt-2">Aquisição inicial das nuvens</h3>
+                            </div>
+                            <img src="img/server.png" alt="Servidor de processamento" class="w-12 h-12 object-contain">
+                        </div>
+                        <div class="rounded-3xl overflow-hidden border border-white/5 bg-slate-950">
+                            <img src="img/nc_raw.png" alt="Imagem com dados brutos de nuvens do GOES 19" class="w-full h-64 object-cover">
+                        </div>
+                        <p class="text-sm text-slate-400 leading-relaxed mt-4">Visualização do conteúdo bruto recebido pelo sistema antes da composição final, evidenciando a etapa técnica de obtenção e leitura do dado meteorológico.</p>
+                    </div>
+
+                    <div class="glass-card rounded-[2rem] p-6 border-emerald-500/20">
+                        <div class="flex items-center justify-between gap-4 mb-4">
+                            <div>
+                                <span class="mono text-[10px] uppercase tracking-[0.25em] text-emerald-400">Produto processado</span>
+                                <h3 class="text-xl font-bold mt-2">Imagem tratada para uso operacional</h3>
+                            </div>
+                            <img src="img/weather_pc.png" alt="Visualização meteorológica" class="w-12 h-12 object-contain">
+                        </div>
+                        <div class="rounded-3xl overflow-hidden border border-white/5 bg-slate-950">
+                            <img src="img/goes_colorido.png" alt="Imagem colorida processada do GOES 19" class="w-full h-64 object-cover">
+                        </div>
+                        <p class="text-sm text-slate-400 leading-relaxed mt-4">Após o pós-processamento, o dado vira um produto visual mais expressivo, com melhor contraste e leitura rápida para análise meteorológica.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 mt-8">
+                <div class="glass-card rounded-[2rem] p-8 border-white/10">
+                    <span class="mono text-[10px] uppercase tracking-[0.25em] text-slate-500">Resultado no sistema</span>
+                    <h3 class="text-2xl font-bold mt-3 mb-4">O processamento converge para a visualização final no SOPHIA</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        A ênfase está em mostrar que o SOPHIA não apenas exibe uma imagem estática: ele recebe o dado satelital, processa o conteúdo bruto de nuvens e entrega o resultado dentro de um ambiente de uso operacional.
+                    </p>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Aquisição estruturada do GOES 19 com preservação do dado original.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Processamento dedicado para conversão do conteúdo bruto em imagem interpretável.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Entrega final em tela com contexto operacional e apoio à decisão em tempo real.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-[2rem] p-6 border-sky-500/20">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <div>
+                            <span class="mono text-[10px] uppercase tracking-[0.25em] text-sky-400">Exibição final</span>
+                            <h3 class="text-2xl font-bold mt-2">SOPHIA APP em operação</h3>
+                        </div>
+                        <img src="img/sophia-app.png" alt="Logo SOPHIA APP" class="w-14 h-14 object-contain">
+                    </div>
+                    <div class="rounded-3xl overflow-hidden border border-white/5 bg-slate-950">
+                        <img src="img/print_sophiaapp.png" alt="Tela do SOPHIA APP com visualização operacional" class="w-full h-[22rem] object-cover object-top">
                     </div>
                 </div>
             </div>
