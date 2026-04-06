@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/sophia-app.png">
+    <title>SOPHIA APP | Sistema de Aproximação</title>
+    <meta name="description" content="Conheça o SOPHIA APP: sistema avançado de controle de aproximação com integração meteorológica, alertas e consciência situacional em tempo real.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg-dark: #0a0f1a;
+            --card-bg: rgba(30, 41, 59, 0.5);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(16, 185, 129, 0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <nav class="fixed w-full z-40 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="img/sophia-app.png" alt="Logo SOPHIA" class="w-12 h-12 object-contain">
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tighter text-white">SOPHIA <span class="text-emerald-400">APP</span></span>
+                        <span class="text-[11px] uppercase tracking-[0.3em] text-slate-500 font-semibold">Sistema de Aproximação</span>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center space-x-10 text-sm font-medium">
+                    <a href="index.html" class="text-slate-400 hover:text-emerald-400 transition-colors">Home</a>
+                    <a href="about.html" class="text-slate-400 hover:text-emerald-400 transition-colors">Empresa</a>
+                    <a href="#recursos" class="text-slate-400 hover:text-emerald-400 transition-colors">Recursos</a>
+                    <a href="#especificacoes" class="text-slate-400 hover:text-emerald-400 transition-colors">Especificações</a>
+                    <a href="contato.html" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow-lg shadow-emerald-950/20">
+                        Solicitar Demonstração
+                    </a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-white">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div id="mobileMenu" class="hidden absolute top-16 left-0 w-full bg-slate-900 p-6 flex flex-col space-y-4">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">Empresa</a>
+                    <a href="#recursos">Recursos</a>
+                    <a href="#especificacoes">Especificações</a>
+                    <a href="contato.html">Contato</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative py-28 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-emerald-600/10 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-1/4 left-0 w-96 h-96 bg-sky-600/10 blur-[120px] rounded-full"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
+                        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                        <span class="text-emerald-400 text-sm font-medium">Sistema de Aproximação</span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">SOPHIA <span class="text-emerald-400">APP</span></h1>
+                    <p class="text-xl text-slate-400 mb-8 leading-relaxed">
+                        Sistema avançado de controle de aproximação que integra meteorologia de alta resolução, dados operacionais e alertas em tempo real para ampliar a consciência situacional.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="contato.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-semibold transition-all shadow-xl">
+                            Solicitar Demonstração
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#visao-geral" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                            Sobre a Tecnologia
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square bg-slate-800/50 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="img/print_sophiaapp.png" alt="Tela do SOPHIA APP" class="w-full h-full object-cover opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="visao-geral" class="py-24 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Uma camada operacional de <span class="text-emerald-400">alto contexto</span></h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
+                        O SOPHIA APP foi concebido para apoiar órgãos de aproximação com uma visão integrada do cenário operacional, reduzindo a necessidade de consulta dispersa a múltiplas fontes paralelas.
+                    </p>
+                    <p class="text-slate-400 text-lg leading-relaxed">
+                        Ao reunir meteorologia, alertas, informações geoespaciais e elementos críticos à decisão em um único ponto de visualização, o sistema ajuda a sustentar respostas mais rápidas, consistentes e documentáveis.
+                    </p>
+                </div>
+                <div class="glass-card rounded-3xl p-8">
+                    <h3 class="mono text-xs uppercase tracking-widest text-slate-500 mb-6">Resumo operacional</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400">Ambiente-alvo</span>
+                            <span class="text-white font-semibold">APP / TMA</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400">Fonte meteorológica</span>
+                            <span class="text-white font-semibold">GOES 19</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400">Integração</span>
+                            <span class="text-white font-semibold">Não invasiva</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400">Auditoria</span>
+                            <span class="text-white font-semibold">Eventos registrados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recursos" class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Recursos <span class="text-emerald-400">Principais</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Tecnologia orientada a segurança, leitura rápida do cenário e suporte contínuo à tomada de decisão operacional.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card rounded-3xl p-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-tower-broadcast"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Controle de Aproximação</h3>
+                    <p class="text-slate-400 leading-relaxed">Gestão eficiente de aeronaves em fase de descida e aproximação final, com suporte contextualizado para leitura de tráfego e organização do fluxo.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-cloud"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Meteorologia Integrada</h3>
+                    <p class="text-slate-400 leading-relaxed">Acesso direto a dados meteorológicos de alta resolução com apoio do satélite GOES 19, ampliando a previsibilidade do cenário operacional.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Consciência Situacional</h3>
+                    <p class="text-slate-400 leading-relaxed">Visualização geoespacial de tráfego, meteorologia e pontos de atenção em um mesmo painel, reduzindo a fragmentação informacional.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Sistema de Alertas</h3>
+                    <p class="text-slate-400 leading-relaxed">Notificações proativas sobre mudanças críticas, conflitos potenciais e eventos meteorológicos relevantes para a operação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="especificacoes" class="py-24 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Especificações <span class="text-emerald-400">Técnicas</span></h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed">O SOPHIA APP foi estruturado para operar em ambientes críticos com foco em confiabilidade, rapidez e suporte consistente ao trabalho do controlador.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <span class="text-slate-400">Processamento de dados</span>
+                            <span class="font-semibold text-white">Tempo real</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <span class="text-slate-400">Fonte meteorológica</span>
+                            <span class="font-semibold text-white">Satélite GOES 19 (netCDF4)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <span class="text-slate-400">Auditoria</span>
+                            <span class="font-semibold text-white">Registro integral dos eventos</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <span class="text-slate-400">Integração</span>
+                            <span class="font-semibold text-white">Não invasiva (STVD)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <span class="text-slate-400">Latência</span>
+                            <span class="font-semibold text-white">&lt; 500 ms</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <span class="text-slate-400">Disponibilidade</span>
+                            <span class="font-semibold text-white">99.9%</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Benefícios <span class="text-emerald-400">Operacionais</span></h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed">A proposta do produto é transformar excesso de consulta paralela em leitura rápida de contexto, preservando foco e rastreabilidade.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Redução da fragmentação informacional no posto operacional.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Aumento da consciência situacional com painel unificado.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Tomada de decisão mais informada a partir de dados meteorológicos e operacionais.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Registro probatório para investigações e reconstrução de cenário.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Interface intuitiva pensada para contexto operacional crítico.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span class="text-slate-300">Compatibilidade com consoles certificados por meio de abordagem não invasiva.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="glass-card rounded-3xl p-8">
+                    <span class="mono text-[10px] text-emerald-400 tracking-widest uppercase">Camada 01</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-3">Dados</h3>
+                    <p class="text-slate-400 leading-relaxed">Coleta e processamento estruturado de insumos operacionais e meteorológicos relevantes ao cenário de aproximação.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8">
+                    <span class="mono text-[10px] text-emerald-400 tracking-widest uppercase">Camada 02</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-3">Visualização</h3>
+                    <p class="text-slate-400 leading-relaxed">Painéis de leitura rápida, organizados para reduzir dispersão de atenção e melhorar a interpretação do contexto em curso.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8">
+                    <span class="mono text-[10px] text-emerald-400 tracking-widest uppercase">Camada 03</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-3">Rastreabilidade</h3>
+                    <p class="text-slate-400 leading-relaxed">Registro dos eventos e interações para apoiar auditoria, investigação e maturidade contínua da operação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gradient-to-r from-emerald-600 to-sky-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h2 class="text-4xl font-bold mb-6">Pronto para aprofundar a apresentação do SOPHIA APP?</h2>
+            <p class="text-emerald-100 mb-8 text-lg">Entre em contato para agendar uma demonstração e mostrar como o sistema pode apoiar operações ATS com mais contexto e previsibilidade.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contato.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-emerald-600 hover:bg-slate-100 rounded-xl font-semibold transition-all shadow-xl">
+                    Fale com nossa equipe
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="about.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/30 hover:bg-white/10 rounded-xl font-semibold transition-all">
+                    Sobre a empresa
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="img/sophia-atc-s.png" alt="Logo SOPHIA" class="w-10 h-10 object-contain">
+                        <span class="text-2xl font-bold text-white">SOPHIA <span class="text-emerald-400">ATC</span></span>
+                    </div>
+                    <p class="text-slate-500 text-xs max-w-xs">Soluções para segurança operacional, consciência situacional e integração de informação em ambientes ATS.</p>
+                </div>
+                <div class="text-sm text-slate-500">
+                    <h5 class="font-bold mb-4 text-slate-300">Links</h5>
+                    <div class="flex flex-col gap-2">
+                        <a href="index.html" class="hover:text-emerald-400">Home</a>
+                        <a href="about.html" class="hover:text-emerald-400">Empresa</a>
+                        <a href="contato.html" class="hover:text-emerald-400">Página de contato</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8">
+                <p class="text-[10px] text-slate-600 max-w-3xl mb-4 leading-relaxed">SOPHIA é uma iniciativa de engenharia voltada ao estudo e desenvolvimento de ferramentas de apoio à consciência situacional em ambientes ATS. Este material possui caráter técnico-institucional.</p>
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
+                    <span>&copy; 2026 SOPHIA ATC Systems Engineering. Todos os direitos reservados.</span>
+                    <span>CNPJ 66.057.989/0001-88</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => e.isIntersecting && e.target.classList.add('active'));
+    });
+
+    document.querySelectorAll('section').forEach(s => {
+        s.classList.add('scroll-reveal');
+        observer.observe(s);
+    });
+
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.style.background = 'rgba(10,15,26,0.95)';
+            nav.style.backdropFilter = 'blur(12px)';
+        } else {
+            nav.style.background = 'rgba(30,41,59,0.5)';
+        }
+    });
+    </script>
+</body>
+</html>
