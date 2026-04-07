@@ -7,7 +7,7 @@
     <title>SOPHIA APP | Sistema para Controle de Aproximação</title>
     <meta name="description" content="Conheça o SOPHIA APP: sistema avançado de controle de aproximação com integração meteorológica, alertas e consciência situacional em tempo real.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -47,6 +47,102 @@
         .scroll-reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .album-stage {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.94));
+            box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.9);
+        }
+
+        .album-slide {
+            display: none;
+        }
+
+        .album-slide.active {
+            display: block;
+        }
+
+        .album-image {
+            transition: transform 0.45s ease;
+            cursor: zoom-in;
+        }
+
+        .album-stage:hover .album-image {
+            transform: scale(1.015);
+        }
+
+        .album-thumb.active {
+            border-color: rgba(52, 211, 153, 0.75);
+            box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.35);
+        }
+
+        .album-modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .album-modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .hero-screen-wrap {
+            perspective: 1800px;
+        }
+
+        .hero-screen {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(-18deg) rotateX(9deg) rotateZ(-4deg);
+            transition: transform 0.45s ease;
+        }
+
+        .hero-screen:hover {
+            transform: rotateY(-14deg) rotateX(7deg) rotateZ(-3deg) translateY(-6px);
+        }
+
+        .hero-screen-panel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.95));
+            box-shadow: 0 35px 80px -35px rgba(0, 0, 0, 0.95);
+        }
+
+        .hero-screen-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 22%, transparent 70%, rgba(16, 185, 129, 0.12));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero-screen-shadow {
+            position: absolute;
+            inset: auto 8% -8% 12%;
+            height: 18%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(15, 23, 42, 0) 72%);
+            filter: blur(26px);
+            transform: translateZ(-80px);
+            pointer-events: none;
+        }
+
+        .hero-screen-backplate {
+            position: absolute;
+            inset: 7% -5% -7% 10%;
+            border-radius: 2rem;
+            background: linear-gradient(160deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.28));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transform: translateZ(-70px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            pointer-events: none;
         }
     </style>
 </head>
@@ -112,10 +208,14 @@
                         </a>
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="aspect-square bg-slate-800/50 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="img/print_sophiaapp.png" alt="Tela do SOPHIA APP" class="w-full h-full object-cover opacity-80">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="relative hero-screen-wrap py-6 lg:py-10">
+                    <div class="hero-screen">
+                        <div class="hero-screen-backplate"></div>
+                        <div class="hero-screen-shadow"></div>
+                        <div class="hero-screen-panel aspect-[1.05/1] flex items-center justify-center p-4 sm:p-5 lg:p-6">
+                            <img src="img/prints/sophiapp/sophiaapp_dashboard.png" alt="Tela principal do dashboard do SOPHIA APP" class="w-full h-full object-contain opacity-90 rounded-2xl border border-white/5 bg-slate-950">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,6 +253,89 @@
                             <span class="text-slate-400">Auditoria</span>
                             <span class="text-white font-semibold">Eventos registrados</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mb-14">
+                <span class="mono text-[10px] uppercase tracking-[0.3em] text-emerald-400">Galeria do sistema</span>
+                <h2 class="text-4xl font-bold mt-4 mb-5">Uma amostra visual do <span class="text-emerald-400">SOPHIA APP</span> em uso</h2>
+                <p class="text-slate-400 text-lg leading-relaxed">
+                    Um conjunto leve de telas para ilustrar a experiência do sistema, destacando painel principal, leitura geoespacial, análise gráfica e histórico operacional.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 items-start">
+                <div class="album-stage p-4 sm:p-5">
+                    <div class="relative rounded-[1.6rem] overflow-hidden border border-white/5 bg-slate-950">
+                        <button type="button" id="albumPrev" class="absolute left-4 top-1/2 z-20 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-950/75 border border-white/10 text-white hover:bg-slate-900 transition-all" aria-label="Imagem anterior">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button type="button" id="albumNext" class="absolute right-4 top-1/2 z-20 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-950/75 border border-white/10 text-white hover:bg-slate-900 transition-all" aria-label="Próxima imagem">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                        <article class="album-slide active" data-index="0" data-title="Dashboard operacional" data-caption="Painel principal com visão integrada do cenário e leitura rápida do contexto operacional.">
+                            <img src="img/prints/sophiapp/sophiaapp_dashboard.png" alt="Tela principal do dashboard do SOPHIA APP" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-top">
+                        </article>
+                        <article class="album-slide" data-index="1" data-title="Camada geoespacial" data-caption="Visualização de mapa e dados espaciais para reforçar a consciência situacional em operação.">
+                            <img src="img/prints/sophiapp/sophiaapp_geo2.png" alt="Visualização geoespacial do SOPHIA APP" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-center">
+                        </article>
+                        <article class="album-slide" data-index="2" data-title="Leitura gráfica noturna" data-caption="Apresentação visual de dados em ambiente noturno para leitura rápida e apoio à decisão.">
+                            <img src="img/prints/sophiapp/sophiaapp_chart1night.png" alt="Gráfico noturno do SOPHIA APP" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-center">
+                        </article>
+                        <article class="album-slide" data-index="3" data-title="Histórico operacional" data-caption="Consulta de registros e eventos do sistema para rastreabilidade e análise posterior.">
+                            <img src="img/prints/sophiapp/sophiaapp_historico.png" alt="Histórico operacional do SOPHIA APP" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-top">
+                        </article>
+                    </div>
+
+                    <div class="flex items-center justify-between gap-4 pt-5">
+                        <div>
+                            <span id="albumCounter" class="mono text-[10px] uppercase tracking-[0.25em] text-emerald-300">Tela 01</span>
+                            <h3 id="albumTitle" class="text-2xl font-bold mt-3">Dashboard operacional</h3>
+                            <p id="albumCaption" class="text-slate-400 mt-3 leading-relaxed">Painel principal com visão integrada do cenário e leitura rápida do contexto operacional.</p>
+                        </div>
+                        <button type="button" id="albumZoom" class="hidden sm:inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-950 border border-white/10 text-slate-200 hover:border-emerald-400/40 hover:text-white transition-all">
+                            <i class="fa-solid fa-expand"></i>
+                            Ampliar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-[2rem] p-6">
+                    <div class="flex items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="mono text-[10px] uppercase tracking-[0.25em] text-slate-500">Navegação</span>
+                            <h3 class="text-2xl font-bold mt-2">Álbum interativo</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Passe pelas telas com as setas laterais ou clique em qualquer miniatura para abrir direto. Ao tocar na imagem principal, ela abre ampliada com o fundo desfocado.
+                    </p>
+                    <div id="albumThumbs" class="grid grid-cols-2 gap-4">
+                        <button type="button" class="album-thumb active rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="0">
+                            <img src="img/prints/sophiapp/sophiaapp_dashboard.png" alt="Miniatura do dashboard do SOPHIA APP" class="w-full h-28 object-cover object-top">
+                            <span class="block px-4 py-3 text-sm text-slate-200">Dashboard</span>
+                        </button>
+                        <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="1">
+                            <img src="img/prints/sophiapp/sophiaapp_geo2.png" alt="Miniatura da visualização geoespacial do SOPHIA APP" class="w-full h-28 object-cover object-center">
+                            <span class="block px-4 py-3 text-sm text-slate-200">Geo</span>
+                        </button>
+                        <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="2">
+                            <img src="img/prints/sophiapp/sophiaapp_chart1night.png" alt="Miniatura do gráfico noturno do SOPHIA APP" class="w-full h-28 object-cover object-center">
+                            <span class="block px-4 py-3 text-sm text-slate-200">Chart Night</span>
+                        </button>
+                        <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="3">
+                            <img src="img/prints/sophiapp/sophiaapp_historico.png" alt="Miniatura do histórico operacional do SOPHIA APP" class="w-full h-28 object-cover object-top">
+                            <span class="block px-4 py-3 text-sm text-slate-200">Histórico</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -473,6 +656,19 @@
         </div>
     </footer>
 
+    <div id="albumModal" class="album-modal fixed inset-0 z-[60] bg-slate-950/70 backdrop-blur-md p-4 sm:p-8">
+        <div class="w-full h-full flex items-center justify-center">
+            <div class="relative w-full max-w-6xl">
+                <button type="button" id="albumModalClose" class="absolute right-0 -top-14 sm:top-4 sm:right-4 z-20 w-11 h-11 rounded-full bg-slate-950/80 border border-white/10 text-white hover:bg-slate-900 transition-all" aria-label="Fechar imagem ampliada">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="rounded-[2rem] overflow-hidden border border-white/10 bg-slate-950 shadow-2xl">
+                    <img id="albumModalImage" src="" alt="" class="w-full max-h-[80vh] object-contain bg-slate-950">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
     const observer = new IntersectionObserver(entries => {
         entries.forEach(e => e.isIntersecting && e.target.classList.add('active'));
@@ -489,6 +685,97 @@
     btn.addEventListener('click', () => {
         menu.classList.toggle('hidden');
     });
+
+    const albumSlides = Array.from(document.querySelectorAll('.album-slide'));
+    const albumThumbs = Array.from(document.querySelectorAll('.album-thumb'));
+    const albumPrev = document.getElementById('albumPrev');
+    const albumNext = document.getElementById('albumNext');
+    const albumCounter = document.getElementById('albumCounter');
+    const albumTitle = document.getElementById('albumTitle');
+    const albumCaption = document.getElementById('albumCaption');
+    const albumZoom = document.getElementById('albumZoom');
+    const albumModal = document.getElementById('albumModal');
+    const albumModalImage = document.getElementById('albumModalImage');
+    const albumModalClose = document.getElementById('albumModalClose');
+    let albumIndex = 0;
+
+    function renderAlbum(index) {
+        albumIndex = (index + albumSlides.length) % albumSlides.length;
+
+        albumSlides.forEach((slide, slideIndex) => {
+            slide.classList.toggle('active', slideIndex === albumIndex);
+        });
+
+        albumThumbs.forEach((thumb, thumbIndex) => {
+            thumb.classList.toggle('active', thumbIndex === albumIndex);
+        });
+
+        const activeSlide = albumSlides[albumIndex];
+        const activeImage = activeSlide.querySelector('img');
+
+        albumCounter.textContent = `Tela ${String(albumIndex + 1).padStart(2, '0')}`;
+        albumTitle.textContent = activeSlide.dataset.title;
+        albumCaption.textContent = activeSlide.dataset.caption;
+        albumZoom.dataset.src = activeImage.src;
+        albumZoom.dataset.alt = activeImage.alt;
+
+        if (albumModal.classList.contains('open')) {
+            albumModalImage.src = activeImage.src;
+            albumModalImage.alt = activeImage.alt;
+        }
+    }
+
+    function openAlbumModal() {
+        albumModalImage.src = albumZoom.dataset.src;
+        albumModalImage.alt = albumZoom.dataset.alt;
+        albumModal.classList.add('open');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeAlbumModal() {
+        albumModal.classList.remove('open');
+        document.body.classList.remove('overflow-hidden');
+        albumModalImage.src = '';
+        albumModalImage.alt = '';
+    }
+
+    albumPrev.addEventListener('click', () => renderAlbum(albumIndex - 1));
+    albumNext.addEventListener('click', () => renderAlbum(albumIndex + 1));
+    albumZoom.addEventListener('click', openAlbumModal);
+
+    albumSlides.forEach((slide, index) => {
+        slide.addEventListener('click', () => {
+            renderAlbum(index);
+            openAlbumModal();
+        });
+    });
+
+    albumThumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            renderAlbum(Number(thumb.dataset.index));
+        });
+    });
+
+    albumModalClose.addEventListener('click', closeAlbumModal);
+    albumModal.addEventListener('click', e => {
+        if (e.target === albumModal) {
+            closeAlbumModal();
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') {
+            renderAlbum(albumIndex - 1);
+        }
+        if (e.key === 'ArrowRight') {
+            renderAlbum(albumIndex + 1);
+        }
+        if (e.key === 'Escape' && albumModal.classList.contains('open')) {
+            closeAlbumModal();
+        }
+    });
+
+    renderAlbum(0);
 
     window.addEventListener('scroll', () => {
         const nav = document.querySelector('nav');
