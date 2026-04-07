@@ -56,29 +56,86 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .radar-scan {
+        .hero-stack {
             position: relative;
-            overflow: hidden;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
+            min-height: 32rem;
+            perspective: 2000px;
         }
 
-        .radar-scan::after {
+        .hero-stack-card {
+            position: absolute;
+            overflow: hidden;
+            border-radius: 1.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.95));
+            box-shadow: 0 35px 80px -35px rgba(0, 0, 0, 0.95);
+            transition: transform 0.45s ease, opacity 0.35s ease, box-shadow 0.35s ease;
+            cursor: default;
+        }
+
+        .hero-stack-card::before {
             content: "";
             position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: conic-gradient(from 0deg, transparent 0%, rgba(56, 189, 248, 0.08) 10%, transparent 20%);
-            animation: rotate 6s linear infinite;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 22%, transparent 72%, rgba(56, 189, 248, 0.14));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero-stack-card-front {
+            inset: 6% 2% 8% 20%;
+            transform: rotateY(-20deg) rotateX(10deg) rotateZ(-5deg);
+            z-index: 2;
+        }
+
+        .hero-stack-card-back {
+            inset: 16% 22% 6% -2%;
+            opacity: 0.88;
+            transform: rotateY(-24deg) rotateX(12deg) rotateZ(6deg);
+            z-index: 1;
+        }
+
+        .hero-stack:hover .hero-stack-card-front {
+            transform: rotateY(-16deg) rotateX(8deg) rotateZ(-4deg) translate3d(10px, -8px, 0);
+        }
+
+        .hero-stack:hover .hero-stack-card-back {
+            transform: rotateY(-20deg) rotateX(10deg) rotateZ(5deg) translate3d(-14px, 6px, 0);
+        }
+
+        .hero-stack-card-front:hover {
+            transform: rotateY(-12deg) rotateX(6deg) rotateZ(-2deg) translate3d(18px, -16px, 70px);
+            z-index: 3;
+            box-shadow: 0 45px 95px -40px rgba(0, 0, 0, 0.98);
+        }
+
+        .hero-stack-card-back:hover {
+            transform: rotateY(-16deg) rotateX(7deg) rotateZ(2deg) translate3d(-6px, -12px, 85px);
+            z-index: 4;
+            opacity: 1;
+            box-shadow: 0 45px 95px -40px rgba(0, 0, 0, 0.98);
+        }
+
+        .hero-stack:hover .hero-stack-card-back:hover + .hero-stack-card-front {
+            opacity: 0.72;
+            transform: rotateY(-24deg) rotateX(12deg) rotateZ(-6deg) translate3d(26px, 14px, -10px);
+        }
+
+        .hero-stack-glow {
+            position: absolute;
+            inset: auto 4% -4% 8%;
+            height: 24%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(15, 23, 42, 0) 72%);
+            filter: blur(30px);
             pointer-events: none;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .hero-stack-meta {
+            position: absolute;
+            bottom: 1.25rem;
+            left: 1.25rem;
+            right: 1.25rem;
+            z-index: 3;
         }
 
         .scroll-reveal {
@@ -173,26 +230,37 @@
                 </div>
 
                 <div class="hidden lg:block">
-                    <div class="glass-card p-4 rounded-[2rem] border-sky-500/20 shadow-2xl relative">
-                        <div class="bg-slate-950 rounded-[1.5rem] aspect-video flex items-center justify-center radar-scan relative overflow-hidden"
-                             style="background-image: url('img/print_sophiaapp.png');">
+                    <div class="hero-stack">
+                        <div class="hero-stack-glow"></div>
 
-                            <div class="absolute inset-0 bg-slate-950/40"></div>
-                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#38bdf8 1px, transparent 1px); background-size: 30px 30px;"></div>
-
-                            <i class="fa-solid fa-crosshairs text-sky-500/25 text-9xl absolute"></i>
-
-                            <div class="z-10 text-center">
-                                <div class="mono text-sky-400 text-xs mb-2 bg-slate-900/80 px-3 py-1 rounded-full backdrop-blur-sm border border-sky-500/30 inline-block">
-                                    SOPHIA GEO AIRSPACE
+                        <div class="hero-stack-card hero-stack-card-back">
+                            <img src="img/prints/sophiapp/sophiaapp_geo2.png" alt="Tela geoespacial do SOPHIA APP" class="w-full h-full object-contain bg-slate-950 p-4">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <div class="hero-stack-meta">
+                                <div class="mono text-sky-300 text-xs mb-2 bg-slate-900/80 px-3 py-1 rounded-full backdrop-blur-sm border border-sky-500/20 inline-block">
+                                    SOPHIA GEO
                                 </div>
                                 <div class="text-slate-300 text-[10px] uppercase tracking-widest font-semibold drop-shadow-md">
-                                    Satélite GOES 19
+                                    Camada espacial e contexto visual
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="absolute bottom-4 left-4 text-[10px] text-sky-300 mono bg-black/50 px-2 py-1 rounded z-10">
-                                GEO | IR | SATELLITE FEED ACTIVE
+                        <div class="hero-stack-card hero-stack-card-front">
+                            <img src="img/prints/sophiapp/sophiaapp_dashboard.png" alt="Dashboard do SOPHIA APP" class="w-full h-full object-contain bg-slate-950 p-4">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 z-10">
+                                <div>
+                                    <div class="mono text-sky-400 text-xs mb-2 bg-slate-900/80 px-3 py-1 rounded-full backdrop-blur-sm border border-sky-500/30 inline-block">
+                                        SOPHIA APP LIVE
+                                    </div>
+                                    <div class="text-slate-300 text-[10px] uppercase tracking-widest font-semibold drop-shadow-md">
+                                        Dashboard + camada geoespacial
+                                    </div>
+                                </div>
+                                <div class="text-[10px] text-sky-300 mono bg-black/50 px-2 py-1 rounded">
+                                    SYSTEM OVERVIEW
+                                </div>
                             </div>
                         </div>
                     </div>
