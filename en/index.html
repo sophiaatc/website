@@ -93,12 +93,23 @@
             z-index: 1;
         }
 
+        .hero-stack-card-middle {
+            inset: 11% 11% 7% 9%;
+            opacity: 0.94;
+            transform: rotateY(-18deg) rotateX(9deg) rotateZ(1deg);
+            z-index: 2;
+        }
+
         .hero-stack:hover .hero-stack-card-front {
             transform: rotateY(-16deg) rotateX(8deg) rotateZ(-4deg) translate3d(10px, -8px, 0);
         }
 
         .hero-stack:hover .hero-stack-card-back {
             transform: rotateY(-20deg) rotateX(10deg) rotateZ(5deg) translate3d(-14px, 6px, 0);
+        }
+
+        .hero-stack:hover .hero-stack-card-middle {
+            transform: rotateY(-14deg) rotateX(7deg) rotateZ(2deg) translate3d(4px, -10px, 28px);
         }
 
         .hero-stack-card-front:hover {
@@ -110,6 +121,13 @@
         .hero-stack-card-back:hover {
             transform: rotateY(-16deg) rotateX(7deg) rotateZ(2deg) translate3d(-6px, -12px, 85px);
             z-index: 4;
+            opacity: 1;
+            box-shadow: 0 45px 95px -40px rgba(0, 0, 0, 0.98);
+        }
+
+        .hero-stack-card-middle:hover {
+            transform: rotateY(-10deg) rotateX(5deg) rotateZ(1deg) translate3d(6px, -12px, 95px);
+            z-index: 5;
             opacity: 1;
             box-shadow: 0 45px 95px -40px rgba(0, 0, 0, 0.98);
         }
@@ -280,6 +298,19 @@
                                 </div>
                                 <div class="text-slate-300 text-[10px] uppercase tracking-widest font-semibold drop-shadow-md">
                                     Spatial layer and visual context
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hero-stack-card hero-stack-card-middle">
+                            <img src="../img/prints/sophiatwr/sophia-airport.png" alt="SOPHIA AIRPORT screen for ground monitoring" class="w-full h-full object-contain bg-slate-950 p-4">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+                            <div class="hero-stack-meta">
+                                <div class="mono text-emerald-300 text-xs mb-2 bg-slate-900/80 px-3 py-1 rounded-full backdrop-blur-sm border border-emerald-500/20 inline-block">
+                                    SOPHIA AIRPORT
+                                </div>
+                                <div class="text-slate-300 text-[10px] uppercase tracking-widest font-semibold drop-shadow-md">
+                                    Ground monitoring and runway incursion prevention
                                 </div>
                             </div>
                         </div>
