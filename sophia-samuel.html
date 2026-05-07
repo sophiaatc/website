@@ -9,28 +9,119 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-        body { background: #020617; color: #fff; }
-        .glass-card { background: rgba(15, 23, 42, 0.78); border: 1px solid rgba(148, 163, 184, 0.18); backdrop-filter: blur(10px); }
-        .mono { font-family: "JetBrains Mono", monospace; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #020617;
+            color: #fff;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.78);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            backdrop-filter: blur(10px);
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .language-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .language-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.45rem 0.7rem;
+            border-radius: 999px;
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .language-option:hover,
+        .language-option.active {
+            color: #fff;
+            background: rgba(16, 185, 129, 0.18);
+        }
+
+        .tracker-frame {
+            position: relative;
+        }
+
+        .tracker-screen-window {
+            position: absolute;
+            left: 24.63%;
+            top: 38.54%;
+            width: 29.00%;
+            height: 22.30%;
+            border-radius: 0.7rem;
+            overflow: hidden;
+            background: #01060f;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .tracker-screen-window img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: auto;
+        }
     </style>
 </head>
 <body class="scroll-smooth">
-    <nav class="fixed w-full z-40 bg-slate-900/80 backdrop-blur border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="img/sophia-samuel.png" alt="Logo SOPHIA SAMUEL" class="w-11 h-11 object-contain">
-                <div>
-                    <div class="font-bold tracking-tight">SOPHIA <span class="text-emerald-400">SAMUEL</span></div>
-                    <div class="text-[10px] uppercase tracking-[0.28em] text-slate-400">Surface Awareness and Movement Unified Evaluation Layer</div>
+    <nav class="fixed w-full z-40 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="img/sophia-samuel.png" alt="Logo SOPHIA SAMUEL" class="w-12 h-12 object-contain">
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tighter text-white">SOPHIA <span class="text-sky-300">SAMUEL</span></span>
+                        <span class="text-[11px] uppercase tracking-[0.3em] text-slate-500 font-semibold">Surface Awareness and Movement Unified Evaluation Layer</span>
+                    </div>
+                </a>
+                <div class="flex items-center gap-3">
+                    <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                        <a href="index.html" class="text-slate-400 hover:text-sky-300 transition-colors">Home</a>
+                        <a href="#diferenciais" class="text-slate-400 hover:text-sky-300 transition-colors">Diferenciais</a>
+                        <a href="#tracker" class="text-slate-400 hover:text-sky-300 transition-colors">Tracker</a>
+                        <a href="#monitoramento" class="text-slate-400 hover:text-sky-300 transition-colors">Monitoramento</a>
+                        <a href="#galeria" class="text-slate-400 hover:text-sky-300 transition-colors">Galeria</a>
+                        <a href="contato.html" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow-lg shadow-emerald-950/20">Solicitar Demonstração</a>
+                    </div>
+                    <div class="language-switch">
+                        <a href="sophia-samuel.html" class="language-option active" aria-label="Versão em português do Brasil">
+                            <span>🇧🇷</span>
+                            <span>Brasil</span>
+                        </a>
+                        <a href="en/sophia-samuel.html" class="language-option" aria-label="English version">
+                            <span>🇺🇸</span>
+                            <span>USA</span>
+                        </a>
+                    </div>
+                    <button id="menuBtn" class="md:hidden text-white">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
-            </a>
-            <div class="hidden md:flex items-center gap-7 text-sm text-slate-300">
-                <a href="index.html" class="hover:text-emerald-300">Home</a>
-                <a href="#diferenciais" class="hover:text-emerald-300">Diferenciais</a>
-                <a href="#galeria" class="hover:text-emerald-300">Galeria</a>
-                <a href="contato.html" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white">Solicitar Demonstração</a>
+                <div id="mobileMenu" class="hidden absolute top-16 left-0 w-full bg-slate-900 p-6 flex flex-col space-y-4">
+                    <a href="index.html">Home</a>
+                    <a href="#diferenciais">Diferenciais</a>
+                    <a href="#tracker">Tracker</a>
+                    <a href="#monitoramento">Monitoramento</a>
+                    <a href="#galeria">Galeria</a>
+                    <a href="contato.html">Contato</a>
+                </div>
             </div>
-            <a href="en/sophia-samuel.html" class="text-xs px-3 py-1.5 rounded border border-white/20 hover:border-emerald-400">EN</a>
         </div>
     </nav>
 
@@ -39,12 +130,12 @@
         <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-sky-500/10 blur-[120px] rounded-full"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-10 items-center">
             <div>
-                <p class="mono text-xs text-emerald-300 uppercase tracking-[0.24em] mb-4">Prevenção de Incursão em Pista</p>
-                <h1 class="text-4xl lg:text-6xl font-bold mb-5">SOPHIA <span class="text-emerald-400">SAMUEL</span></h1>
+                <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Prevenção de Incursão em Pista</p>
+                <h1 class="text-4xl lg:text-6xl font-bold mb-5">SOPHIA <span class="text-sky-300">SAMUEL</span></h1>
                 <p class="text-xl text-slate-300 mb-6">Sistema Avançado de Rastreamento de Superfície e Consciência Situacional Aeroportuária.</p>
                 <p class="text-slate-400 leading-relaxed mb-8">Surface Awareness and Movement Unified Evaluation Layer. Solução em tempo real para monitoramento de viaturas e aeronaves no solo, com foco operacional direto na mitigação de incursões em pista.</p>
                 <div class="flex flex-wrap gap-3">
-                    <a href="#galeria" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-semibold">Ver telas do sistema</a>
+                    <a href="#tracker" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-semibold">Ver TRACKER em operação</a>
                     <a href="contato.html" class="px-6 py-3 border border-white/20 hover:border-emerald-400 rounded-xl font-semibold text-slate-200">Falar com a equipe</a>
                 </div>
             </div>
@@ -65,6 +156,57 @@
                 <article class="glass-card rounded-2xl p-6"><h3 class="font-bold mb-2">SOPHIA GEO Ultra Rápido</h3><p class="text-sm text-slate-400">Renderização HTML5 Canvas leve, com ferramentas ATC nativas e operação fluida inclusive em ambientes legados.</p></article>
                 <article class="glass-card rounded-2xl p-6"><h3 class="font-bold mb-2">Videomapa Integrado</h3><p class="text-sm text-slate-400">Edição vetorial no navegador para pistas, taxiways e zonas de proteção, com persistência automática das propriedades do cenário.</p></article>
                 <article class="glass-card rounded-2xl p-6"><h3 class="font-bold mb-2">Replay para Auditoria</h3><p class="text-sm text-slate-400">Gravação contínua de eventos e reconstrução precisa de ocorrências para investigação operacional e treinamentos.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracker" class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
+            <div>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">TRACKER de superfície com proteção local</h2>
+                <p class="text-slate-400 leading-relaxed mb-6">O TRACKER opera com telemetria contínua e interação visual no próprio equipamento. Em caso de perda de comunicação com a base, o geofencing interno entra em fallback e mantém viaturas e aeronaves protegidas com lógica local de confirmação e alarme.</p>
+                <div class="space-y-4">
+                    <div class="glass-card rounded-xl p-4"><p class="text-sm text-slate-300"><span class="font-semibold text-sky-300">Identificação e estado:</span> nome da viatura, status de base, GPS e eventos de ingresso/incursão exibidos na tela do dispositivo.</p></div>
+                    <div class="glass-card rounded-xl p-4"><p class="text-sm text-slate-300"><span class="font-semibold text-sky-300">Alarmística operacional:</span> indicação visual e sonora para incursões, chamadas ATC RADIO e reconhecimento de comandos de controle.</p></div>
+                    <div class="glass-card rounded-xl p-4"><p class="text-sm text-slate-300"><span class="font-semibold text-sky-300">Resiliência em queda de enlace:</span> proteção continua ativa no próprio tracker mesmo em cenário de falha de comunicação com a suíte.</p></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-3xl p-5">
+                <div class="tracker-frame max-w-3xl mx-auto">
+                    <img src="img/prints/screnshoot_tracker/tracker.png" alt="Tracker SOPHIA SAMUEL" class="w-full h-auto object-contain">
+                    <div class="tracker-screen-window">
+                        <img id="trackerDisplay" src="img/prints/screnshoot_tracker/tracker_telaprincipal_aguardandogps.png" alt="Tela do tracker aguardando GPS">
+                    </div>
+                </div>
+                <p id="trackerCaption" class="mt-4 text-sm text-slate-400 text-center">Tela do tracker: aguardando GPS.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="monitoramento" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-6 lg:p-8 mb-10">
+                <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-8 items-center">
+                    <figure>
+                        <img src="img/prints/screnshoot_tracker/viatura.png" alt="Viatura monitorada em tempo real pelo SOPHIA SAMUEL" class="w-full max-h-80 object-contain bg-slate-950 rounded-2xl border border-white/10 p-3">
+                    </figure>
+                    <div>
+                        <h3 class="text-2xl lg:text-3xl font-bold mb-4">Monitoramento de viaturas em tempo real</h3>
+                        <p class="text-slate-300 leading-relaxed">Monitore as viaturas em tempo real, proteja as operações e melhore a consciência situacional dos Órgãos ATS, da Administração Aeroportuária e dos condutores.</p>
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Monitoramento e Alta Disponibilidade</h2>
+            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">A suíte conta com monitoramento dos equipamentos e serviços da rede, além de arquitetura de alta disponibilidade com dualização de servidores e sensores para manter a continuidade operacional.</p>
+            <div class="grid lg:grid-cols-2 gap-6">
+                <figure class="glass-card rounded-2xl p-4">
+                    <img src="img/prints/sophiasamuel/sophia-monitor.png" alt="Tela de monitoramento dos equipamentos e serviços" class="w-full h-72 object-contain bg-slate-950 rounded-xl border border-white/10">
+                    <figcaption class="text-sm text-slate-400 mt-3">Monitoramento centralizado de equipamentos, serviços e estado da infraestrutura da rede.</figcaption>
+                </figure>
+                <figure class="glass-card rounded-2xl p-4">
+                    <img src="img/prints/sophiasamuel/sophiasamuel_monitorderede.png" alt="Tela de monitor de rede e disponibilidade" class="w-full h-72 object-contain bg-slate-950 rounded-xl border border-white/10">
+                    <figcaption class="text-sm text-slate-400 mt-3">Supervisão de rede com visão operacional da disponibilidade e dos componentes em redundância.</figcaption>
+                </figure>
             </div>
         </div>
     </section>
@@ -99,5 +241,38 @@
     <footer class="py-14 border-t border-white/10 text-center text-xs text-slate-500">
         <p>&copy; 2026 SOPHIA ATC Systems Engineering. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        const btn = document.getElementById('menuBtn');
+        const menu = document.getElementById('mobileMenu');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        const trackerDisplay = document.getElementById('trackerDisplay');
+        const trackerCaption = document.getElementById('trackerCaption');
+
+        const trackerScreens = [
+            { src: 'img/prints/screnshoot_tracker/tracker_telaprincipal_aguardandogps.png', caption: 'Tela do tracker: aguardando GPS.' },
+            { src: 'img/prints/screnshoot_tracker/tracker_telaprincipal_gpsok.png', caption: 'Tela do tracker: GPS validado e operacional.' },
+            { src: 'img/prints/screnshoot_tracker/tracker_baseon.png', caption: 'Tela do tracker: comunicação com a base ativa.' },
+            { src: 'img/prints/screnshoot_tracker/tracker_ingresso.png', caption: 'Tela do tracker: ingresso em zona monitorada.' },
+            { src: 'img/prints/screnshoot_tracker/tracker_incursão.png', caption: 'Tela do tracker: alerta de incursão em pista.' },
+            { src: 'img/prints/screnshoot_tracker/tracker_ident.png', caption: 'Tela do tracker: modo IDENT acionado.' }
+        ];
+
+        let trackerIndex = 0;
+
+        setInterval(() => {
+            trackerIndex = (trackerIndex + 1) % trackerScreens.length;
+            const screen = trackerScreens[trackerIndex];
+            trackerDisplay.src = screen.src;
+            trackerDisplay.alt = screen.caption;
+            trackerCaption.textContent = screen.caption;
+        }, 3000);
+    </script>
 </body>
 </html>
