@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/sophia-atc-s.png">
     <title>Contato | SOPHIA ATC</title>
-    <meta name="description" content="Entre em contato com a SOPHIA ATC para conhecer a suíte, solicitar demonstração do SOPHIA APP ou iniciar uma conversa institucional.">
+    <meta name="description" content="Entre em contato com a SOPHIA ATC para conhecer nossas soluções, solicitar uma demonstração, conversar com nossa equipe ou acessar o Helpdesk.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
@@ -87,45 +87,44 @@
     </style>
 </head>
 <body class="scroll-smooth">
-    <nav class="fixed w-full z-40 glass-card">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <a href="index.html" class="flex items-center space-x-2">
-                    <img src="img/sophia-atc-s.png" alt="Logo SOPHIA" class="w-12 h-12 object-contain">
+    <nav class="fixed w-full z-40 bg-slate-950/90 backdrop-blur-xl border-b border-white/10" aria-label="Início">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex justify-between h-16 items-center gap-3">
+                <a href="index.html" class="flex items-center space-x-2 shrink-0" aria-label="SOPHIA ATC — Início">
+                    <img src="img/sophia-atc-s.png" alt="Logo SOPHIA ATC" class="w-11 h-11 object-contain">
                     <div class="flex flex-col">
                         <span class="text-xl font-bold tracking-tighter text-white">SOPHIA <span class="text-sky-400">ATC</span></span>
-                        <span class="text-[11px] uppercase tracking-[0.3em] text-slate-500 font-semibold">Air Traffic Service Systems Engineering</span>
+                        <span class="hidden lg:block text-[10px] uppercase tracking-[0.24em] text-slate-500 font-semibold">Air Traffic Service Systems Engineering</span>
                     </div>
                 </a>
-                <div class="flex items-center gap-3">
-                    <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                        <a href="index.html" class="text-slate-400 hover:text-sky-400 transition-colors">Home</a>
+                <div class="flex items-center gap-2 lg:gap-3">
+                    <div class="hidden xl:flex items-center gap-5 text-sm font-medium whitespace-nowrap">
+                        <a href="index.html" class="text-slate-400 hover:text-sky-400 transition-colors">Início</a>
                         <a href="about.html" class="text-slate-400 hover:text-sky-400 transition-colors">Sobre nós</a>
+                        <a href="index.html#solucoes" class="text-slate-400 hover:text-sky-400 transition-colors">Soluções</a>
                         <a href="sophia-app.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA APP</a>
-                        <a href="#canais" class="text-slate-400 hover:text-sky-400 transition-colors">Canais</a>
-                        <a href="mailto:contato@sophiaatc.com.br" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition-all shadow-lg shadow-sky-900/20">
-                            contato@sophiaatc.com.br
+                        <a href="sophia-samuel.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA SAMUEL</a>
+                        <a href="contato.html" class="text-slate-400 hover:text-sky-400 transition-colors">Contato</a>
+                        <a href="/helpdesk/" class="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition-all shadow-lg shadow-sky-900/20">
+                            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>Área do Usuário
                         </a>
                     </div>
                     <div class="language-switch">
-                        <a href="contato.html" class="language-option active" aria-label="Versão em português do Brasil">
-                            <span>🇧🇷</span>
-                            <span>Brasil</span>
-                        </a>
-                        <a href="en/contact.html" class="language-option" aria-label="English version">
-                            <span>🇺🇸</span>
-                            <span>USA</span>
-                        </a>
+                        <a href="contato.html" class="language-option active" aria-label="Versão em português do Brasil"><span>🇧🇷</span><span class="hidden sm:inline">Brasil</span></a>
+                        <a href="en/contact.html" class="language-option" aria-label="English version"><span>🇺🇸</span><span class="hidden sm:inline">USA</span></a>
                     </div>
-                    <button id="menuBtn" class="md:hidden text-white">
-                        <i class="fa-solid fa-bars"></i>
+                    <button id="menuBtn" class="xl:hidden text-white p-2" type="button" aria-label="Menu" aria-controls="mobileMenu">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div id="mobileMenu" class="hidden absolute top-16 left-0 w-full bg-slate-900 p-6 flex flex-col space-y-4">
-                    <a href="index.html">Home</a>
+                <div id="mobileMenu" class="hidden xl:hidden absolute top-16 left-0 w-full bg-slate-950/95 border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
+                    <a href="index.html">Início</a>
                     <a href="about.html">Sobre nós</a>
+                    <a href="index.html#solucoes">Soluções</a>
                     <a href="sophia-app.html">SOPHIA APP</a>
-                    <a href="#canais">Canais</a>
+                    <a href="sophia-samuel.html">SOPHIA SAMUEL</a>
+                    <a href="contato.html">Contato</a>
+                    <a href="/helpdesk/" class="inline-flex items-center gap-2 text-sky-300"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>Área do Usuário</a>
                 </div>
             </div>
         </div>
@@ -141,7 +140,7 @@
                 <span class="mono text-[10px] text-sky-400 tracking-widest uppercase">Contato</span>
                 <h1 class="text-5xl lg:text-6xl font-bold mt-4 mb-6">Vamos conversar sobre a <span class="gradient-text">SOPHIA ATC</span>.</h1>
                 <p class="text-xl text-slate-400 leading-relaxed max-w-3xl">
-                    Se você deseja apresentar a suíte institucionalmente, conhecer melhor o SOPHIA APP ou iniciar uma conversa técnica, esta é a porta de entrada.
+                    Deseja falar sobre alguma de nossas soluções, solicitar uma demonstração ou iniciar uma conversa técnica? Nossa equipe está à disposição.
                 </p>
             </div>
         </div>
@@ -149,11 +148,11 @@
 
     <section id="canais" class="py-24 bg-slate-900/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-stretch">
                 <div>
                     <h2 class="text-4xl font-bold mb-6">Canais de <span class="text-sky-400">atendimento</span></h2>
                     <p class="text-slate-400 text-lg leading-relaxed mb-8">
-                        A página foi pensada para facilitar um primeiro contato institucional e comercial, sem adicionar complexidade desnecessária. Se preferir, você pode substituir ou complementar estes canais depois.
+                        Entre em contato para conhecer a SOPHIA ATC, conversar sobre necessidades operacionais, solicitar uma apresentação ou obter informações sobre nossas soluções.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="glass-card rounded-3xl p-8">
@@ -168,32 +167,29 @@
                             <div class="w-12 h-12 rounded-2xl bg-sky-500/15 text-sky-400 flex items-center justify-center mb-5">
                                 <i class="fa-solid fa-display"></i>
                             </div>
-                            <h3 class="text-2xl font-bold mb-3">Demonstração</h3>
-                            <p class="text-slate-400 mb-5 leading-relaxed">Solicite uma apresentação do SOPHIA APP com foco nos cenários operacionais mais relevantes.</p>
-                            <a href="sophia-app.html" class="text-sky-300 font-semibold hover:text-sky-200">Ver página do produto</a>
+                            <h3 class="text-2xl font-bold mb-3">Nossas soluções</h3>
+                            <p class="text-slate-400 mb-5 leading-relaxed">Deseja falar sobre alguma de nossas soluções? Conheça o portfólio e solicite uma apresentação direcionada ao seu cenário operacional.</p>
+                            <a href="index.html#solucoes" class="text-sky-300 font-semibold hover:text-sky-200">Conhecer nossas soluções</a>
                         </div>
                     </div>
                 </div>
-                <div class="glass-card rounded-3xl p-8">
-                    <h3 class="text-2xl font-bold mb-6">Mensagem sugerida</h3>
-                    <p class="text-slate-400 leading-relaxed mb-6">
-                        Para facilitar, deixamos um modelo curto de abordagem inicial. Você pode usar esta estrutura ao responder contatos externos ou como base para um futuro formulário.
-                    </p>
-                    <div class="rounded-2xl bg-slate-950 border border-white/5 p-6">
-                        <p class="text-slate-300 leading-relaxed">
-                            Olá, gostaria de conhecer melhor a SOPHIA ATC e entender como o SOPHIA APP pode apoiar operações ATS. Tenho interesse em uma apresentação institucional/técnica e em conversar sobre possibilidades de demonstração.
-                        </p>
-                    </div>
-                    <div class="mt-6 space-y-4 text-sm">
-                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl">
-                            <span class="text-slate-400">Resposta esperada</span>
-                            <span class="text-white font-semibold">Institucional e técnica</span>
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border-sky-500/20">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-sky-500/15 text-sky-300 flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-headset text-2xl"></i>
                         </div>
-                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl">
-                            <span class="text-slate-400">Objetivo</span>
-                            <span class="text-white font-semibold">Apresentação e alinhamento</span>
-                        </div>
+                        <span class="mono text-[10px] text-sky-400 tracking-widest uppercase">Suporte ao cliente</span>
+                        <h3 class="text-3xl font-bold mt-3 mb-5">Já é usuário de uma de nossas plataformas?</h3>
+                        <p class="text-slate-400 leading-relaxed mb-6">Acesse o SOPHIA Helpdesk para abrir e acompanhar chamados, registrar dúvidas operacionais e solicitar suporte técnico à nossa equipe.</p>
+                        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i>Abertura e acompanhamento de chamados</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i>Histórico centralizado de atendimentos</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i>Comunicação direta com a equipe de suporte</li>
+                        </ul>
                     </div>
+                    <a href="/helpdesk/" class="inline-flex items-center justify-center gap-3 px-6 py-4 bg-sky-600 hover:bg-sky-500 text-white rounded-xl font-semibold transition-all shadow-lg shadow-sky-950/30">
+                        Abrir chamado no Helpdesk <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -203,7 +199,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-14">
                 <h2 class="text-4xl font-bold mb-4">Como podemos <span class="text-sky-400">ajudar</span></h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Uma página simples, mas já preparada para atender os principais tipos de contato que fazem sentido para o momento atual do site.</p>
+                <p class="text-slate-400 max-w-2xl mx-auto">Atendemos demandas institucionais, comerciais e técnicas relacionadas à SOPHIA ATC e às soluções do nosso portfólio.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="glass-card rounded-3xl p-8">
@@ -213,8 +209,8 @@
                 </div>
                 <div class="glass-card rounded-3xl p-8">
                     <span class="mono text-[10px] text-sky-400 tracking-widest uppercase">02</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-3">Demonstração do produto</h3>
-                    <p class="text-slate-400 leading-relaxed">Para aprofundar o SOPHIA APP, seus recursos, benefícios operacionais e diferenciais técnicos.</p>
+                    <h3 class="text-2xl font-bold mt-4 mb-3">Demonstração de soluções</h3>
+                    <p class="text-slate-400 leading-relaxed">Para conhecer recursos, benefícios operacionais e diferenciais técnicos das soluções SOPHIA.</p>
                 </div>
                 <div class="glass-card rounded-3xl p-8">
                     <span class="mono text-[10px] text-sky-400 tracking-widest uppercase">03</span>
@@ -227,15 +223,15 @@
 
     <section class="py-24 bg-gradient-to-r from-sky-600 to-indigo-600">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h2 class="text-4xl font-bold mb-6">Pronto para iniciar a conversa?</h2>
-            <p class="text-sky-100 mb-8 text-lg">Use o e-mail institucional para solicitar apresentação, demonstração ou aprofundamento técnico.</p>
+            <h2 class="text-4xl font-bold mb-6">Fale com a SOPHIA ATC</h2>
+            <p class="text-sky-100 mb-8 text-lg">Nossa equipe está disponível para apresentações, demonstrações e conversas técnicas sobre as suas necessidades operacionais.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="mailto:sophiaatcsystems@gmail.com" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-sky-600 hover:bg-slate-100 rounded-xl font-semibold transition-all shadow-xl">
+                <a href="mailto:contato@sophiaatc.com.br" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-sky-600 hover:bg-slate-100 rounded-xl font-semibold transition-all shadow-xl">
                     Enviar e-mail
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                <a href="sophia-app.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/30 hover:bg-white/10 rounded-xl font-semibold transition-all">
-                    Ver SOPHIA APP
+                <a href="index.html#solucoes" class="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/30 hover:bg-white/10 rounded-xl font-semibold transition-all">
+                    Conhecer soluções
                 </a>
             </div>
         </div>
@@ -243,21 +239,29 @@
 
     <footer class="py-20 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <img src="img/sophia-atc-s.png" alt="Logo SOPHIA" class="w-10 h-10 object-contain">
+            <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr] mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center space-x-2 mb-4">
+                        <img src="img/sophia-atc-s.png" alt="Logo SOPHIA ATC" class="w-10 h-10 object-contain">
                         <span class="text-2xl font-bold text-white">SOPHIA <span class="text-sky-400">ATC</span></span>
-                    </div>
-                    <p class="text-slate-500 text-xs max-w-xs">Engenharia dedicada à segurança da navegação aérea e à modernização de infraestruturas críticas.</p>
+                    </a>
+                    <p class="text-slate-500 text-xs max-w-sm">Engenharia dedicada à segurança da navegação aérea e à modernização de infraestruturas críticas.</p>
                 </div>
                 <div class="text-sm text-slate-500">
-                    <h5 class="font-bold mb-4 text-slate-300">Links</h5>
+                    <h5 class="font-bold mb-4 text-slate-300">Navegação</h5>
                     <div class="flex flex-col gap-2">
-                        <a href="index.html" class="hover:text-sky-400">Home</a>
-                        <a href="about.html" class="hover:text-sky-400">Empresa</a>
+                        <a href="index.html" class="hover:text-sky-400">Início</a>
+                        <a href="about.html" class="hover:text-sky-400">Sobre nós</a>
                         <a href="sophia-app.html" class="hover:text-sky-400">SOPHIA APP</a>
-                        <a href="mailto:sophiaatcsystems@gmail.com" class="hover:text-sky-400">sophiaatcsystems@gmail.com</a>
+                        <a href="sophia-samuel.html" class="hover:text-sky-400">SOPHIA SAMUEL</a>
+                        <a href="contato.html" class="hover:text-sky-400">Contato</a>
+                    </div>
+                </div>
+                <div class="text-sm text-slate-500">
+                    <h5 class="font-bold mb-4 text-slate-300">Atendimento</h5>
+                    <div class="flex flex-col gap-3">
+                        <a href="/helpdesk/" class="inline-flex items-center gap-2 text-sky-300 hover:text-sky-200"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>Área do Usuário</a>
+                        <a href="mailto:contato@sophiaatc.com.br" class="hover:text-sky-400">contato@sophiaatc.com.br</a>
                     </div>
                 </div>
             </div>
