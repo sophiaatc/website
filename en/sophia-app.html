@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/sophia-app.png">
     <title>SOPHIA APP | Approach Control System</title>
-    <meta name="description" content="Discover SOPHIA APP: an advanced approach control system with meteorological integration, alerts, and real-time situational awareness.">
+    <meta name="description" content="Discover SOPHIA APP: an approach control system with offline aeronautical information, procedure charts, integrated meteorology, and operational alerts.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
@@ -376,6 +376,91 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="aeronautical-information" class="py-24 bg-slate-900/30 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mb-14">
+                <span class="mono text-[10px] uppercase tracking-[0.3em] text-sky-400">Offline operational library</span>
+                <h2 class="text-4xl font-bold mt-4 mb-5">Aeronautical information <span class="text-emerald-400">always within reach</span> of the controller</h2>
+                <p class="text-slate-400 text-lg leading-relaxed">
+                    Following the concept of an onboard <strong class="text-slate-200">Electronic Flight Bag (EFB)</strong>, SOPHIA APP keeps a local library of aeronautical information and publications in the operational environment. Content remains available without continuous access to external services, with update control and expiration alerts for publications and amendments (AMDT).
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <article class="glass-card rounded-3xl p-7">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-database"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Local ROTAER database</h3>
+                    <p class="text-slate-400 leading-relaxed">Search ROTAER data in an offline database without depending on repeated AISWEB queries for each required item.</p>
+                </article>
+                <article class="glass-card rounded-3xl p-7">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-file-circle-check"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Charts and publications</h3>
+                    <p class="text-slate-400 leading-relaxed">Access IAC, STAR, SID, ADC, and other procedure charts, as well as manuals and checklists, with AMDT validity status.</p>
+                </article>
+                <article class="glass-card rounded-3xl p-7">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-300 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Validity under control</h3>
+                    <p class="text-slate-400 leading-relaxed">Alerts anticipate publication and amendment expiration, supporting current-cycle checks without interrupting the operational flow.</p>
+                </article>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <article class="glass-card rounded-[2rem] overflow-hidden">
+                    <img src="../img/prints/sophiapp/sophiaapp_rotaer.png" alt="Offline ROTAER information search in SOPHIA APP" class="w-full aspect-[8/5] object-cover object-top border-b border-white/5">
+                    <div class="p-7">
+                        <span class="mono text-[10px] uppercase tracking-[0.25em] text-sky-400">Local search</span>
+                        <h3 class="text-2xl font-bold mt-3 mb-3">ROTAER without permanent external queries</h3>
+                        <p class="text-slate-400 leading-relaxed">Aerodrome, runway, frequency, navigation aid, and remark data are available within SOPHIA APP for quick searches by ICAO code.</p>
+                    </div>
+                </article>
+                <article class="glass-card rounded-[2rem] overflow-hidden">
+                    <img src="../img/prints/sophiapp/sophiaapp_chart1day.png" alt="Daytime aeronautical chart displayed in SOPHIA APP" class="w-full aspect-[8/5] object-cover object-center border-b border-white/5">
+                    <div class="p-7">
+                        <span class="mono text-[10px] uppercase tracking-[0.25em] text-emerald-400">Aeronautical charts</span>
+                        <h3 class="text-2xl font-bold mt-3 mb-3">Procedures available at the position</h3>
+                        <p class="text-slate-400 leading-relaxed">The integrated viewer brings together the charts required for the operation, with full-screen reading and access organized by aerodrome and category.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <figure class="glass-card rounded-3xl overflow-hidden">
+                    <img src="../img/prints/sophiapp/sophiaapp_chart1type.png" alt="Aeronautical chart categories available in SOPHIA APP" class="w-full aspect-video object-cover object-top border-b border-white/5">
+                    <figcaption class="p-5 text-sm text-slate-300">Chart categories and AMDT validity monitoring.</figcaption>
+                </figure>
+                <figure class="glass-card rounded-3xl overflow-hidden">
+                    <img src="../img/prints/sophiapp/sophiaapp_publicacoes.png" alt="SOPHIA APP offline publications and manuals library" class="w-full aspect-video object-cover object-top border-b border-white/5">
+                    <figcaption class="p-5 text-sm text-slate-300">Publications and manuals organized into an operational library.</figcaption>
+                </figure>
+                <figure class="glass-card rounded-3xl overflow-hidden">
+                    <img src="../img/prints/sophiapp/sophiaapp_checklist.png" alt="Service handover checklist in SOPHIA APP" class="w-full aspect-video object-cover object-top border-b border-white/5">
+                    <figcaption class="p-5 text-sm text-slate-300">Digital checklists available directly at the workstation.</figcaption>
+                </figure>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <article class="rounded-[2rem] border border-emerald-500/20 bg-emerald-500/5 p-8">
+                    <div class="flex items-start gap-5">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl"><i class="fa-solid fa-keyboard"></i></div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">No KVMs or additional hardware</h3>
+                            <p class="text-slate-400 leading-relaxed">The solution does not require KVMs, keyboard and mouse switches, or dedicated peripherals. The controller stays focused while using the hardware already present in the operation.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="rounded-[2rem] border border-sky-500/20 bg-sky-500/5 p-8">
+                    <div class="flex items-start gap-5">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-sky-500/15 text-sky-400 flex items-center justify-center text-2xl"><i class="fa-solid fa-right-left"></i></div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">Continuity across operational positions</h3>
+                            <p class="text-slate-400 leading-relaxed">Information can be exchanged between PVIAs when changing operational consoles or during sector grouping and splitting, reducing rework while preserving contextual continuity.</p>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
