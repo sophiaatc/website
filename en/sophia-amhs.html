@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/sophia-amhs.png">
+    <title>SOPHIA AMHS | Aeronautical Message Handling User Agent (X.400 P7)</title>
+    <meta name="description" content="SOPHIA AMHS User Agent: an aeronautical message handling client over X.400 P7 with an X.500 directory, guided composition of ATS, OPMET and AIS messages, local storage, action logging and an auditable event history.">
+    <meta property="og:title" content="SOPHIA AMHS | Aeronautical Message Handling User Agent (X.400 P7)">
+    <meta property="og:description" content="An AMHS X.400 P7 / X.500 client with guided composition of ATS, OPMET and AIS messages, local storage and a full audit trail.">
+    <meta property="og:image" content="../img/sophia-amhs.png">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #020617;
+            color: #fff;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.78);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            backdrop-filter: blur(10px);
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .language-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .language-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.45rem 0.7rem;
+            border-radius: 999px;
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .language-option:hover,
+        .language-option.active {
+            color: #fff;
+            background: rgba(56, 189, 248, 0.18);
+        }
+
+        .flow-line::before {
+            content: "";
+            position: absolute;
+            left: 1.35rem;
+            top: 2.9rem;
+            bottom: -1.5rem;
+            width: 2px;
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.5), rgba(56, 189, 248, 0.05));
+        }
+
+        .flow-line:last-child::before { display: none; }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <nav class="fixed w-full z-40 bg-slate-950/90 backdrop-blur-xl border-b border-white/10" aria-label="Home">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex justify-between h-16 items-center gap-3">
+                <a href="index.html" class="flex items-center space-x-2 shrink-0" aria-label="SOPHIA ATC — Home">
+                    <img src="../img/sophia-atc-s.png" alt="Logo SOPHIA ATC" class="w-11 h-11 object-contain">
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tighter text-white">SOPHIA <span class="text-sky-400">ATC</span></span>
+                        <span class="hidden lg:block text-[10px] uppercase tracking-[0.24em] text-slate-500 font-semibold">Air Traffic Service Systems Engineering</span>
+                    </div>
+                </a>
+                <div class="flex items-center gap-2 lg:gap-3">
+                    <div class="hidden xl:flex items-center gap-5 text-sm font-medium whitespace-nowrap">
+                        <a href="index.html" class="text-slate-400 hover:text-sky-400 transition-colors">Home</a>
+                        <a href="about.html" class="text-slate-400 hover:text-sky-400 transition-colors">About Us</a>
+                        <a href="index.html#solutions" class="text-slate-400 hover:text-sky-400 transition-colors">Solutions</a>
+                        <a href="sophia-app.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA APP</a>
+                        <a href="sophia-samuel.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA SAMUEL</a>
+                        <a href="sophia-amhs.html" class="text-sky-400 transition-colors">SOPHIA AMHS</a>
+                        <a href="contact.html" class="text-slate-400 hover:text-sky-400 transition-colors">Contact</a>
+                        <a href="/helpdesk/" class="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition-all shadow-lg shadow-sky-900/20">
+                            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>User Area
+                        </a>
+                    </div>
+                    <div class="language-switch">
+                        <a href="../sophia-amhs.html" class="language-option" aria-label="Brazilian Portuguese version"><span>🇧🇷</span><span class="hidden sm:inline">Brasil</span></a>
+                        <a href="sophia-amhs.html" class="language-option active" aria-label="English version"><span>🇺🇸</span><span class="hidden sm:inline">USA</span></a>
+                    </div>
+                    <button id="menuBtn" class="xl:hidden text-white p-2" type="button" aria-label="Menu" aria-controls="mobileMenu">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div id="mobileMenu" class="hidden xl:hidden absolute top-16 left-0 w-full bg-slate-950/95 border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="index.html#solutions">Solutions</a>
+                    <a href="sophia-app.html">SOPHIA APP</a>
+                    <a href="sophia-samuel.html">SOPHIA SAMUEL</a>
+                    <a href="sophia-amhs.html" class="text-sky-400">SOPHIA AMHS</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="/helpdesk/" class="inline-flex items-center gap-2 text-sky-300"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>User Area</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-28 pb-20 relative overflow-hidden">
+        <div class="absolute top-20 -right-20 w-80 h-80 bg-sky-500/15 blur-[120px] rounded-full"></div>
+        <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-indigo-500/10 blur-[120px] rounded-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+                <div class="inline-flex items-center gap-3 mb-5">
+                    <img src="../img/sophia-amhs.png" alt="SOPHIA AMHS icon" class="w-12 h-12 object-contain">
+                    <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em]">Aeronautical Messaging · X.400 P7 · X.500</p>
+                </div>
+                <h1 class="text-4xl lg:text-6xl font-bold mb-5">SOPHIA <span class="text-sky-300">AMHS</span></h1>
+                <p class="text-xl text-slate-300 mb-6">A User Agent for the ATS Message Handling Service (AMHS).</p>
+                <p class="text-slate-400 leading-relaxed mb-8">A client that talks to the AMHS server over the full X.400 P7 stack — bind, submission, listing, retrieval and deletion of messages — with an X.500 directory, guided composition of ATS, OPMET and AIS messages, local storage and an audit trail for every operator action.</p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#composition" class="px-6 py-3 bg-sky-600 hover:bg-sky-500 rounded-xl font-semibold">See guided composition</a>
+                    <a href="#audit" class="px-6 py-3 border border-sky-300/40 hover:border-sky-300 text-sky-200 rounded-xl font-semibold">Action logging and history</a>
+                    <a href="contact.html" class="px-6 py-3 border border-white/20 hover:border-sky-400 rounded-xl font-semibold text-slate-200">Talk to our team</a>
+                </div>
+            </div>
+            <div class="glass-card rounded-3xl p-4">
+                <img src="../img/prints/sophiaamhsua/inbox-claro.png" alt="SOPHIA AMHS main screen showing the message inbox" class="w-full object-contain rounded-2xl bg-slate-950 border border-white/10">
+                <p class="text-sm text-slate-400 mt-3 text-center">Inbox with priority, origin/destination, type, callsign and filing time for every message.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview / summary -->
+    <section id="overview" class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-5">A real <span class="text-sky-300">AMHS User Agent</span></h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-5">
+                        SOPHIA AMHS does not fake the receipt or the sending of messages: it establishes a real P7 association with the AMHS server, runs the protocol operations and handles the server responses exactly as an operational aeronautical messaging system would.
+                    </p>
+                    <p class="text-slate-400 text-lg leading-relaxed">
+                        Every batch of work opens a short-lived association — connect, authenticate, run the required operations and release gracefully — the same usage pattern adopted by real ATS systems. A message is marked <span class="text-slate-200 font-semibold">sent</span> only once the server confirms the submission.
+                    </p>
+                </div>
+                <div class="glass-card rounded-3xl p-8">
+                    <h3 class="mono text-xs uppercase tracking-widest text-slate-500 mb-6">Technical summary</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400 text-sm">Transport</span>
+                            <span class="text-white font-semibold text-sm">X.400 P7 over OSI/ITOT</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400 text-sm">Directory</span>
+                            <span class="text-white font-semibold text-sm">X.500 / LDAP (DSA)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400 text-sm">Content</span>
+                            <span class="text-white font-semibold text-sm">X.420 IPM</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400 text-sm">Messages</span>
+                            <span class="text-white font-semibold text-sm">ATS · OPMET · AIS</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400 text-sm">Audit</span>
+                            <span class="text-white font-semibold text-sm">Every action logged</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950">
+                            <span class="text-slate-400 text-sm">Interface</span>
+                            <span class="text-white font-semibold text-sm">Web · light/dark theme</span>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mt-5 leading-relaxed">Developed in line with ITU-T X.400 / X.420 / X.500 and ICAO Doc 9880 (ATN/OSI technical specifications — AMHS).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protocol stack -->
+    <section id="protocol" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">End-to-end AMHS conversation</p>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">The full stack, no shortcuts</h2>
+            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">The client implements the entire message path: from transport framing to the P7 messaging operations, through the whole OSI session, presentation and association stack. The ASN.1/BER encoding is its own and is covered by round-trip tests against the same codec used by the server.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">OSI transport</h3>
+                    <p class="text-sm text-slate-400">ITOT/TPKT over TCP and COTP (class 0), the framing AMHS uses to carry the session PDUs.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">Session and presentation</h3>
+                    <p class="text-sm text-slate-400">OSI session (connect/finish) and a presentation layer that negotiates the abstract-syntax contexts used on the association.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">ACSE and ROSE</h3>
+                    <p class="text-sm text-slate-400">Association establishment and release (AARQ/RLRQ) and the remote-operations mechanism (invoke / return-result / return-error / reject).</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-inbox" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">P7 operations</h3>
+                    <p class="text-sm text-slate-400"><span class="mono text-xs text-slate-300">ms-bind</span>, <span class="mono text-xs text-slate-300">message-submission</span>, <span class="mono text-xs text-slate-300">message-list</span>, <span class="mono text-xs text-slate-300">message-fetch</span> and <span class="mono text-xs text-slate-300">message-delete</span> against the server message store.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">X.420 IPM content</h3>
+                    <p class="text-sm text-slate-400">Building and reading the IPM envelope — heading, originator, recipients, subject and body — with directory O/R names.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-vial-circle-check" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">Codec with a safety net</h3>
+                    <p class="text-sm text-slate-400">Every ASN.1/BER encoder and decoder has a round-trip test that exercises the same wire shape exchanged with the server.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mailboxes and operational flow -->
+    <section id="flow" class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-5">Mailboxes and operational flow</h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">The interface organizes traffic into dedicated mailboxes — <span class="text-slate-200">Inbox</span>, <span class="text-slate-200">ATS</span>, <span class="text-slate-200">FPL</span>, <span class="text-slate-200">OPMET</span>, <span class="text-slate-200">AIS</span>, <span class="text-slate-200">Sent</span>, <span class="text-slate-200">Outbox</span>, <span class="text-slate-200">Drafts</span> and <span class="text-slate-200">Trash</span> — with search by filing time, origin, type, callsign, subject or content.</p>
+                    <div class="space-y-4">
+                        <div class="glass-card rounded-xl p-4 relative flow-line">
+                            <p class="text-sm text-slate-300"><span class="font-semibold text-sky-300">Automatic receipt:</span> on each cycle the client lists the store, fetches every entry it does not yet know and places it in the inbox. The operation is idempotent — fetching twice never duplicates a message.</p>
+                        </div>
+                        <div class="glass-card rounded-xl p-4 relative flow-line">
+                            <p class="text-sm text-slate-300"><span class="font-semibold text-sky-300">Confirmed sending:</span> the message is composed as an IPM, submitted to the server and moved to Sent only with a real submission result; on failure it stays in the Outbox for resubmission.</p>
+                        </div>
+                        <div class="glass-card rounded-xl p-4 relative flow-line">
+                            <p class="text-sm text-slate-300"><span class="font-semibold text-sky-300">Deletion in the right order:</span> the client runs the deletion on the server first and only then moves the local copy to Trash. A local deletion is never undone by a remote failure.</p>
+                        </div>
+                        <div class="glass-card rounded-xl p-4 relative flow-line">
+                            <p class="text-sm text-slate-300"><span class="font-semibold text-sky-300">Forward and reply:</span> reply, forward and resubmit from the reading bar, with multi-select and optimistic deletion that reverts if the server rejects it.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-3xl p-4">
+                    <img src="../img/prints/sophiaamhsua/inbox-claro.png" alt="SOPHIA AMHS message list with ATS, FPL, OPMET and AIS mailboxes" class="w-full object-contain rounded-2xl bg-slate-950 border border-white/10">
+                    <p class="text-sm text-slate-400 mt-3 text-center">Virtual mailboxes automatically separate ATS, flight plans, weather and aeronautical information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guided composition / parser -->
+    <section id="composition" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Guided composition and decoded reading</p>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Field by field, with a live preview</h2>
+            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">Each message type has a guided form that builds the wire text from labeled fields, with a live preview and two-layer validation — in the browser and on the server. Free text is coerced to the permitted AFTN character set before it reaches the message body. On reading, each group is decoded into plain language.</p>
+            <div class="grid lg:grid-cols-3 gap-6 mb-10">
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-plane-departure" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">ATS messages</h3>
+                    <p class="text-sm text-slate-400 mb-3">Field-by-field composition of FPL, CHG, DLA, CNL, DEP and ARR, folding the text onto the canonical lines that AMHS processors expect. It recognizes the AFTN envelope (priority and filing time) and splits the body fields on reading.</p>
+                    <p class="text-[11px] text-slate-500">Developed in line with ICAO Doc 4444 (PANS-ATM, Appendix 3 — ATS Messages) and ICA 100-15.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-cloud-sun-rain" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">OPMET messages</h3>
+                    <p class="text-sm text-slate-400 mb-3">A guided form for METAR, SPECI, TAF, SIGMET and AIRMET in TAC format, building the WMO abbreviated heading and the coded body. Incoming METAR and SPECI are recognized and open decoded group by group.</p>
+                    <p class="text-[11px] text-slate-500">Developed in line with ICA 105-1 / 105-15 / 105-16 / 105-17.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">AIS messages</h3>
+                    <p class="text-sm text-slate-400 mb-3">Composition of national NOTAM, ASHTAM and SNOWTAM over the same P7 transport, with the qualifier line, fields A) to G) and a structured day/time editor. The NOTAM codes come from a versioned dataset, not hard-coded.</p>
+                    <p class="text-[11px] text-slate-500">Developed in line with ICA 53-1, TCA 53-1 and ICA 53-10.</p>
+                </article>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <figure class="glass-card rounded-2xl p-3">
+                    <img src="../img/prints/sophiaamhsua/nova-msg-fpl-claro.png" alt="New ATS message form, FPL type, light theme" class="w-full h-60 object-cover object-top rounded-xl bg-slate-950 border border-white/10">
+                    <figcaption class="text-sm text-slate-400 mt-3">New ATS message — filed flight plan (FPL), with the encoding generated in real time.</figcaption>
+                </figure>
+                <figure class="glass-card rounded-2xl p-3">
+                    <img src="../img/prints/sophiaamhsua/nova-msg-dep-escuro.png" alt="New ATS message form, DEP type, dark theme" class="w-full h-60 object-cover object-top rounded-xl bg-slate-950 border border-white/10">
+                    <figcaption class="text-sm text-slate-400 mt-3">Departure message (DEP) — prefilled from an FPL in the mailbox, with step-by-step validation.</figcaption>
+                </figure>
+                <figure class="glass-card rounded-2xl p-3">
+                    <img src="../img/prints/sophiaamhsua/nova-msg-metar-escuro.png" alt="New OPMET message form, METAR type, dark theme" class="w-full h-60 object-cover object-top rounded-xl bg-slate-950 border border-white/10">
+                    <figcaption class="text-sm text-slate-400 mt-3">New OPMET message — METAR with the WMO abbreviated heading and wind shortcuts.</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- NDR + Directory -->
+    <section id="directory" class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8">
+            <div class="glass-card rounded-3xl p-8">
+                <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
+                <h3 class="text-2xl font-bold mb-3">Non-delivery report (NDR)</h3>
+                <p class="text-slate-400 leading-relaxed mb-4">Every sent message requests a non-delivery report from the server. If an address does not resolve, the server returns an NDR that the client recognizes: the message goes back to the Outbox marked as <span class="text-rose-300 font-semibold">not delivered</span>, with the stated reason, and the <span class="text-slate-200">Resubmit</span> button becomes available as soon as the address is fixed.</p>
+                <p class="text-sm text-slate-500">The report is stored and matched to the original message by the submission identifier, and the event is recorded in the history as a system event.</p>
+            </div>
+            <div class="glass-card rounded-3xl p-8">
+                <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-address-book" aria-hidden="true"></i></div>
+                <h3 class="text-2xl font-bold mb-3">Address catalogue (DSA / X.500)</h3>
+                <p class="text-slate-400 leading-relaxed mb-4">The catalogue is a local base with field-by-field manual entry — CN, OU, O, PRMD, ADMD, C — and a preview of the address canonical form. Synchronization with the directory is operator-triggered, shows a progress bar and, when the directory diverges from a manually edited entry, opens a modal asking what to do.</p>
+                <p class="text-sm text-slate-500">An edited entry is treated as manual and is no longer silently overwritten. The table has search and pagination; every operation is audited.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Storage -->
+    <section id="storage" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-10 items-center">
+                <div>
+                    <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Local storage</p>
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-5">Nothing disappears without a trace</h2>
+                    <p class="text-slate-400 leading-relaxed">The message archive lives in a local base on the equipment itself, with mailboxes represented by a folder field. Receipt is idempotent by the remote sequence number, so repeated queries to the server never produce duplicate copies.</p>
+                </div>
+                <div class="grid sm:grid-cols-3 gap-5">
+                    <article class="glass-card rounded-2xl p-6">
+                        <i class="fa-solid fa-fingerprint text-2xl text-sky-300 mb-4"></i>
+                        <h3 class="font-bold mb-2">Idempotent receipt</h3>
+                        <p class="text-sm text-slate-400">Each message is indexed by its remote identifier; a new receipt cycle does not reintroduce what is already in the archive.</p>
+                    </article>
+                    <article class="glass-card rounded-2xl p-6">
+                        <i class="fa-solid fa-trash-can-arrow-up text-2xl text-sky-300 mb-4"></i>
+                        <h3 class="font-bold mb-2">A Trash that does not erase</h3>
+                        <p class="text-sm text-slate-400">Deleting from the Trash does not remove the record: it is marked as purged, leaves every view and is retained for audit.</p>
+                    </article>
+                    <article class="glass-card rounded-2xl p-6">
+                        <i class="fa-solid fa-clock-rotate-left text-2xl text-sky-300 mb-4"></i>
+                        <h3 class="font-bold mb-2">Controlled purge</h3>
+                        <p class="text-sm text-slate-400">Deleted messages stay 30 days in the history — answering &ldquo;who deleted what&rdquo; — and only then are removed for good, automatically.</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Access, RBAC and audit -->
+    <section id="audit" class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Access, roles and action logging</p>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Who did what, and when</h2>
+            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">The interface requires a login. This access layer is local to the console — it identifies who is operating the client for the audit trail — and is kept separate from the AMHS identity, which is shared infrastructure. Console passwords are stored with key derivation (PBKDF2-HMAC-SHA256), and sessions use an opaque token with a sliding expiry.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-user-gear" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">Two roles</h3>
+                    <p class="text-sm text-slate-400">Administrator — who manages users — and operator. Everyone sees every message and the full history; the only difference is who manages accounts.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-list-check" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">Every action logged</h3>
+                    <p class="text-sm text-slate-400">Login and logout, reading, sending, drafting, resubmitting, moving to trash, purging, restoring, manual and automatic receipt, user and catalogue changes, printing — always with the author.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-user-check" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">Who read the message</h3>
+                    <p class="text-sm text-slate-400">Reading records one row per distinct reader — that is how the question &ldquo;who saw this message&rdquo; is answered without relying on anyone's memory.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">History with no restriction</h3>
+                    <p class="text-sm text-slate-400">The History screen is open to any authenticated user: traceability is a shared asset of the operation, not an administrative privilege.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-key" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">Provisioning and recovery</h3>
+                    <p class="text-sm text-slate-400">An initial administrator is created on first run, idempotently, with its own password-recovery path.</p>
+                </article>
+                <article class="glass-card rounded-2xl p-6">
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+                    <h3 class="font-bold mb-2">Protected session</h3>
+                    <p class="text-sm text-slate-400">Session cookie restricted to the host itself, API requests blocked without a valid session, and a short sliding expiry.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Printing -->
+    <section id="printing" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 lg:p-10 grid lg:grid-cols-[1fr_0.8fr] gap-8 items-center">
+                <div>
+                    <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-print" aria-hidden="true"></i></div>
+                    <h2 class="text-2xl lg:text-3xl font-bold mb-4">&ldquo;AMHS MESSAGE&rdquo; printing</h2>
+                    <p class="text-slate-400 leading-relaxed">The reading bar produces a PDF with a letterhead, a metadata block — type, direction, attachment, priority, date and time, originator and recipient O/R, subject and identifier — and the message text in a monospaced font. Each page footer carries the identifier, the generation time and the page number; long bodies paginate on their own. Every print is recorded in the history.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 rounded-2xl bg-slate-950 text-center">
+                        <div class="text-sky-300 text-xl mb-2"><i class="fa-solid fa-stamp"></i></div>
+                        <p class="text-xs text-slate-400">Letterhead configurable per installation</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-950 text-center">
+                        <div class="text-sky-300 text-xl mb-2"><i class="fa-solid fa-file-lines"></i></div>
+                        <p class="text-xs text-slate-400">Complete message metadata</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-950 text-center">
+                        <div class="text-sky-300 text-xl mb-2"><i class="fa-solid fa-hashtag"></i></div>
+                        <p class="text-xs text-slate-400">Identifier on every page</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-950 text-center">
+                        <div class="text-sky-300 text-xl mb-2"><i class="fa-solid fa-clock"></i></div>
+                        <p class="text-xs text-slate-400">Generation time in the footer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">SOPHIA AMHS Gallery</h2>
+            <p class="text-slate-400 mb-8">Inbox and guided composition of ATS and OPMET messages, in light and dark themes.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <img src="../img/prints/sophiaamhsua/inbox-claro.png" alt="Inbox, light theme" class="w-full object-contain bg-slate-950 rounded-xl border border-white/10 p-2">
+                <img src="../img/prints/sophiaamhsua/nova-msg-fpl-claro.png" alt="New ATS FPL message, light theme" class="w-full object-contain bg-slate-950 rounded-xl border border-white/10 p-2">
+                <img src="../img/prints/sophiaamhsua/nova-msg-dep-escuro.png" alt="New ATS DEP message, dark theme" class="w-full object-contain bg-slate-950 rounded-xl border border-white/10 p-2">
+                <img src="../img/prints/sophiaamhsua/nova-msg-metar-escuro.png" alt="New OPMET METAR message, dark theme" class="w-full object-contain bg-slate-950 rounded-xl border border-white/10 p-2">
+            </div>
+        </div>
+    </section>
+
+    <!-- Normative references -->
+    <section id="standards" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Normative basis</p>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Normative references</h2>
+            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">International and national standards observed during the development of SOPHIA AMHS. This list indicates the references adopted as a technical basis and does not constitute a declaration of certification or approval.</p>
+            <div class="glass-card rounded-3xl divide-y divide-white/10">
+                <div class="p-6 grid md:grid-cols-[0.9fr_2fr] gap-4 md:items-center">
+                    <h3 class="font-bold text-slate-200">Messaging and directory</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ITU-T X.400</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ITU-T X.420</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ITU-T X.500</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICAO Doc 9880 — ATN/OSI (AMHS)</span>
+                    </div>
+                </div>
+                <div class="p-6 grid md:grid-cols-[0.9fr_2fr] gap-4 md:items-center">
+                    <h3 class="font-bold text-slate-200">ATS messages</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICAO Doc 4444 — PANS-ATM (App. 3)</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 100-15 — ATS Messages</span>
+                    </div>
+                </div>
+                <div class="p-6 grid md:grid-cols-[0.9fr_2fr] gap-4 md:items-center">
+                    <h3 class="font-bold text-slate-200">Meteorology (OPMET)</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 105-1</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 105-15</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 105-16</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 105-17</span>
+                    </div>
+                </div>
+                <div class="p-6 grid md:grid-cols-[0.9fr_2fr] gap-4 md:items-center">
+                    <h3 class="font-bold text-slate-200">Aeronautical information (AIS)</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 53-1 — NOTAM</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">TCA 53-1 — NOTAM codes</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 53-10 — ASHTAM / SNOWTAM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="py-20 bg-slate-900/30">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-5">Interoperability with traceability</h2>
+            <p class="text-slate-400 leading-relaxed mb-8">SOPHIA AMHS was designed to exchange messages with the AMHS infrastructure over the standard protocol and, at the same time, keep a record of every operator step — from reading to purge. It follows the same logic as the other SOPHIA solutions: integrated information, auditable events and a faithful reconstruction of the scenario.</p>
+            <div class="flex flex-wrap gap-3 justify-center">
+                <a href="contact.html" class="px-6 py-3 bg-sky-600 hover:bg-sky-500 rounded-xl font-semibold">Request a presentation</a>
+                <a href="index.html#solutions" class="px-6 py-3 border border-white/20 hover:border-sky-400 rounded-xl font-semibold text-slate-200">See all solutions</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr] mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center space-x-2 mb-4">
+                        <img src="../img/sophia-atc-s.png" alt="Logo SOPHIA ATC" class="w-10 h-10 object-contain">
+                        <span class="text-2xl font-bold text-white">SOPHIA <span class="text-sky-400">ATC</span></span>
+                    </a>
+                    <p class="text-slate-500 text-xs max-w-sm">Engineering dedicated to air navigation safety and the modernization of critical infrastructures.</p>
+                </div>
+                <div class="text-sm text-slate-500">
+                    <h5 class="font-bold mb-4 text-slate-300">Navigation</h5>
+                    <div class="flex flex-col gap-2">
+                        <a href="index.html" class="hover:text-sky-400">Home</a>
+                        <a href="about.html" class="hover:text-sky-400">About Us</a>
+                        <a href="sophia-app.html" class="hover:text-sky-400">SOPHIA APP</a>
+                        <a href="sophia-samuel.html" class="hover:text-sky-400">SOPHIA SAMUEL</a>
+                        <a href="sophia-amhs.html" class="hover:text-sky-400">SOPHIA AMHS</a>
+                        <a href="contact.html" class="hover:text-sky-400">Contact</a>
+                    </div>
+                </div>
+                <div class="text-sm text-slate-500">
+                    <h5 class="font-bold mb-4 text-slate-300">Support</h5>
+                    <div class="flex flex-col gap-3">
+                        <a href="/helpdesk/" class="inline-flex items-center gap-2 text-sky-300 hover:text-sky-200"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>User Area</a>
+                        <a href="mailto:contato@sophiaatc.com.br" class="hover:text-sky-400">contato@sophiaatc.com.br</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8">
+                <p class="text-[10px] text-slate-600 max-w-3xl mb-4 leading-relaxed">SOPHIA is an engineering initiative focused on studying and developing tools that support situational awareness and operational safety in aviation. This material is technical and institutional in nature. The normative references indicate the standards observed during development and do not constitute a declaration of certification or approval.</p>
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
+                    <span>&copy; 2026 SOPHIA ATC Systems Engineering. All rights reserved.</span>
+                    <span>CNPJ 67.177.100/0001-69</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('menuBtn');
+        const menu = document.getElementById('mobileMenu');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
