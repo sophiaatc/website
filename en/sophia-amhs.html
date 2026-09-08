@@ -130,7 +130,7 @@
                 </div>
                 <h1 class="text-4xl lg:text-6xl font-bold mb-5">SOPHIA <span class="text-sky-300">AMHS</span></h1>
                 <p class="text-xl text-slate-300 mb-6">A User Agent for the ATS Message Handling Service (AMHS).</p>
-                <p class="text-slate-400 leading-relaxed mb-8">A client that talks to the AMHS server over the full X.400 P7 stack — bind, submission, listing, retrieval and deletion of messages — with an X.500 directory, guided composition of ATS, OPMET and AIS messages, local storage and an audit trail for every operator action.</p>
+                <p class="text-slate-400 leading-relaxed mb-8">SOPHIA AMHS is a workstation for operational access to AMHS, enabling users to compose, transmit, receive, query and manage aeronautical messages over the X.400 P7 protocol. It integrates an X.500 directory, guided composition of ATS, OPMET and AIS messages, local storage and traceability of operator actions.</p>
                 <div class="flex flex-wrap gap-3">
                     <a href="#composition" class="px-6 py-3 bg-sky-600 hover:bg-sky-500 rounded-xl font-semibold">See guided composition</a>
                     <a href="#audit" class="px-6 py-3 border border-sky-300/40 hover:border-sky-300 text-sky-200 rounded-xl font-semibold">Action logging and history</a>
@@ -149,12 +149,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
                 <div>
-                    <h2 class="text-3xl lg:text-4xl font-bold mb-5">A real <span class="text-sky-300">AMHS User Agent</span></h2>
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-5">A complete <span class="text-sky-300">AMHS User Agent</span></h2>
                     <p class="text-slate-400 text-lg leading-relaxed mb-5">
-                        SOPHIA AMHS does not fake the receipt or the sending of messages: it establishes a real P7 association with the AMHS server, runs the protocol operations and handles the server responses exactly as an operational aeronautical messaging system would.
+                        SOPHIA AMHS serves as the operational interface between the user and the AMHS server. Through P7 associations, it performs authentication, submission, listing, retrieval and deletion of messages, processing server responses in accordance with the X.400 architecture.
                     </p>
                     <p class="text-slate-400 text-lg leading-relaxed">
-                        Every batch of work opens a short-lived association — connect, authenticate, run the required operations and release gracefully — the same usage pattern adopted by real ATS systems. A message is marked <span class="text-slate-200 font-semibold">sent</span> only once the server confirms the submission.
+                        Each communication cycle establishes an association with the server, performs the required operations and closes the session in a controlled manner. The status shown to the operator reflects the result confirmed by the server: a message is only recorded as <span class="text-slate-200 font-semibold">sent</span> after its submission has been confirmed.
                     </p>
                 </div>
                 <div class="glass-card rounded-3xl p-8">
@@ -194,9 +194,9 @@
     <!-- Protocol stack -->
     <section id="protocol" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">End-to-end AMHS conversation</p>
-            <h2 class="text-3xl lg:text-4xl font-bold mb-4">The full stack, no shortcuts</h2>
-            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">The client implements the entire message path: from transport framing to the P7 messaging operations, through the whole OSI session, presentation and association stack. The ASN.1/BER encoding is its own and is covered by round-trip tests against the same codec used by the server.</p>
+            <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">End-to-end AMHS communication</p>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Native implementation of the X.400/P7 stack</h2>
+            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">The client directly implements the protocols required to communicate with the AMHS server, from OSI/ITOT transport to P7 operations, including session, presentation, ACSE and ROSE. Protocol structures are encoded in ASN.1/BER and verified through encoding and decoding tests.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <article class="glass-card rounded-2xl p-6">
                     <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></div>

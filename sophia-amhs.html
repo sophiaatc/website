@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/sophia-amhs.png">
-    <title>SOPHIA AMHS | User Agent de Mensagens Aeronáutica X.400 P7</title>
+    <title>SOPHIA AMHS | User Agent de Mensagens Aeronáuticas X.400 P7</title>
     <meta name="description" content="SOPHIA AMHS User Agent: cliente de Mensagens aeronáutica X.400 P7 com diretório X.500, composição assistida de mensagens ATS, OPMET e AIS, armazenamento local, registro de ações e histórico de eventos auditável.">
     <meta property="og:title" content="SOPHIA AMHS | User Agent de Mensagens Aeronáutica X.400 P7">
     <meta property="og:description" content="Cliente AMHS X.400 P7 / X.500 com composição assistida de mensagens ATS, OPMET e AIS, armazenamento local e trilha de auditoria completa.">
@@ -126,11 +126,11 @@
             <div>
                 <div class="inline-flex items-center gap-3 mb-5">
                     <img src="img/sophia-amhs.png" alt="Ícone SOPHIA AMHS" class="w-12 h-12 object-contain">
-                    <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em]">Mensagens Aeronáutica · X.400 P7 · X.500</p>
+                    <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em]">Mensagens Aeronáuticas · X.400 P7 · X.500</p>
                 </div>
                 <h1 class="text-4xl lg:text-6xl font-bold mb-5">SOPHIA <span class="text-sky-300">AMHS</span></h1>
                 <p class="text-xl text-slate-300 mb-6">User Agent para o Serviço de Tratamento de Mensagens ATS (AMHS).</p>
-                <p class="text-slate-400 leading-relaxed mb-8">Um cliente que conversa com o servidor AMHS pela pilha X.400 P7 completa — bind, submissão, listagem, recuperação e exclusão de mensagens — com diretório X.500, composição assistida de mensagens ATS, OPMET e AIS, armazenamento local e trilha de auditoria de cada ação do operador.</p>
+                <p class="text-slate-400 leading-relaxed mb-8">O SOPHIA AMHS é uma estação de trabalho para acesso operacional ao AMHS, permitindo compor, transmitir, receber, consultar e gerenciar mensagens aeronáuticas por meio do protocolo X.400 P7. Integra diretório X.500, composição assistida de mensagens ATS, OPMET e AIS, armazenamento local e rastreabilidade das ações do operador.</p>
                 <div class="flex flex-wrap gap-3">
                     <a href="#composicao" class="px-6 py-3 bg-sky-600 hover:bg-sky-500 rounded-xl font-semibold">Ver composição assistida</a>
                     <a href="#auditoria" class="px-6 py-3 border border-sky-300/40 hover:border-sky-300 text-sky-200 rounded-xl font-semibold">Registro de ações e histórico</a>
@@ -149,12 +149,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
                 <div>
-                    <h2 class="text-3xl lg:text-4xl font-bold mb-5">Um <span class="text-sky-300">User Agent AMHS</span> de verdade</h2>
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-5">Um <span class="text-sky-300">User Agent AMHS</span> completo</h2>
                     <p class="text-slate-400 text-lg leading-relaxed mb-5">
-                        O SOPHIA AMHS não simula o recebimento nem o envio de mensagens: ele estabelece uma associação P7 real com o servidor AMHS, executa as operações do protocolo e trata as respostas do servidor exatamente como um sistema de Mensagens aeronáutica em operação.
+                        O SOPHIA AMHS atua como interface operacional entre o usuário e o servidor AMHS. Por meio de associações P7, realiza autenticação, submissão, consulta, recuperação e exclusão de mensagens, processando as respostas do servidor conforme a arquitetura X.400.
                     </p>
                     <p class="text-slate-400 text-lg leading-relaxed">
-                        Cada lote de trabalho abre uma associação curta — conecta, autentica, executa as operações necessárias e encerra de forma graciosa — o mesmo padrão de uso adotado por sistemas ATS reais. Uma mensagem só é marcada como <span class="text-slate-200 font-semibold">enviada</span> quando o servidor confirma a submissão.
+                        Cada ciclo de comunicação estabelece uma associação com o servidor, executa as operações necessárias e encerra a sessão de forma controlada. O estado apresentado ao operador acompanha o resultado confirmado pelo servidor: uma mensagem somente é registrada como <span class="text-slate-200 font-semibold">enviada</span> após a confirmação da submissão.
                     </p>
                 </div>
                 <div class="glass-card rounded-3xl p-8">
@@ -194,9 +194,9 @@
     <!-- Pilha de protocolo -->
     <section id="protocolo" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Conversa AMHS ponta a ponta</p>
-            <h2 class="text-3xl lg:text-4xl font-bold mb-4">A pilha completa, sem atalhos</h2>
-            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">O cliente implementa o caminho inteiro da mensagem: do enquadramento de transporte às operações de Mensagens P7, passando por toda a pilha de sessão, apresentação e associação OSI. A codificação ASN.1/BER é própria e coberta por testes de ida e volta contra o mesmo codec do servidor.</p>
+            <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Comunicação AMHS ponta a ponta</p>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Implementação nativa da pilha X.400/P7</h2>
+            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">O cliente implementa diretamente os protocolos necessários à comunicação com o servidor AMHS, desde o transporte OSI/ITOT até as operações P7, incluindo sessão, apresentação, ACSE e ROSE. As estruturas de protocolo são codificadas em ASN.1/BER e verificadas por testes de codificação e decodificação.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <article class="glass-card rounded-2xl p-6">
                     <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></div>
