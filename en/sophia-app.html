@@ -174,9 +174,50 @@
             color: #fff;
             background: rgba(16, 185, 129, 0.18);
         }
+
+        /* Dropdown de navegação */
+        .nav-dd { position: relative; }
+
+        .nav-dd-panel {
+            position: absolute;
+            top: calc(100% + 0.65rem);
+            left: 0;
+            min-width: 14rem;
+            background: rgba(2, 6, 23, 0.97);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.9rem;
+            padding: 0.5rem;
+            box-shadow: 0 22px 50px -20px rgba(0, 0, 0, 0.85);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            z-index: 50;
+        }
+
+        .nav-dd:hover .nav-dd-panel,
+        .nav-dd:focus-within .nav-dd-panel,
+        .nav-dd.is-open .nav-dd-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dd-link {
+            display: block;
+            padding: 0.6rem 0.75rem;
+            border-radius: 0.55rem;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .nav-dd-link:hover { background: rgba(56, 189, 248, 0.14); color: #fff; }
+
     </style>
 </head>
 <body class="scroll-smooth">
+
     <nav class="fixed w-full z-40 bg-slate-950/90 backdrop-blur-xl border-b border-white/10" aria-label="Home">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="flex justify-between h-16 items-center gap-3">
@@ -184,17 +225,26 @@
                     <img src="../img/sophia-atc-s.png" alt="Logo SOPHIA ATC" class="w-11 h-11 object-contain">
                     <div class="flex flex-col">
                         <span class="text-xl font-bold tracking-tighter text-white">SOPHIA <span class="text-sky-400">ATC</span></span>
-                        <span class="hidden lg:block text-[10px] uppercase tracking-[0.24em] text-slate-500 font-semibold">Air Traffic Service Systems Engineering</span>
+                        <span class="hidden lg:block text-[10px] uppercase tracking-[0.24em] text-slate-500 font-semibold">Systems Engineering for Aviation</span>
                     </div>
                 </a>
                 <div class="flex items-center gap-2 lg:gap-3">
                     <div class="hidden xl:flex items-center gap-5 text-sm font-medium whitespace-nowrap">
                         <a href="index.html" class="text-slate-400 hover:text-sky-400 transition-colors">Home</a>
                         <a href="about.html" class="text-slate-400 hover:text-sky-400 transition-colors">About Us</a>
-                        <a href="index.html#solutions" class="text-slate-400 hover:text-sky-400 transition-colors">Solutions</a>
-                        <a href="sophia-app.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA APP</a>
-                        <a href="sophia-samuel.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA SAMUEL</a>
-                        <a href="sophia-amhs.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA AMHS</a>
+                        <div class="nav-dd">
+                            <button type="button" class="nav-dd-toggle text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">
+                                Solutions <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
+                            </button>
+                            <div class="nav-dd-panel">
+                                <a href="index.html#solutions" class="nav-dd-link">Areas of work</a>
+                                <div class="my-1 border-t border-white/5"></div>
+                                <a href="sophia-app.html" class="nav-dd-link">SOPHIA APP</a>
+                                <a href="sophia-samuel.html" class="nav-dd-link">SOPHIA SAMUEL</a>
+                                <a href="sophia-amhs.html" class="nav-dd-link">SOPHIA AMHS</a>
+                                <a href="sophia-hermod.html" class="nav-dd-link">SOPHIA HERMOD</a>
+                            </div>
+                        </div>
                         <a href="contact.html" class="text-slate-400 hover:text-sky-400 transition-colors">Contact</a>
                         <a href="/helpdesk/" class="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition-all shadow-lg shadow-sky-900/20">
                             <i class="fa-solid fa-user-shield" aria-hidden="true"></i>User Area
@@ -211,10 +261,18 @@
                 <div id="mobileMenu" class="hidden xl:hidden absolute top-16 left-0 w-full bg-slate-950/95 border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
                     <a href="index.html">Home</a>
                     <a href="about.html">About Us</a>
-                    <a href="index.html#solutions">Solutions</a>
-                    <a href="sophia-app.html">SOPHIA APP</a>
-                    <a href="sophia-samuel.html">SOPHIA SAMUEL</a>
-                    <a href="sophia-amhs.html">SOPHIA AMHS</a>
+                    <div>
+                        <button type="button" id="mSolucoesBtn" class="flex items-center justify-between w-full" aria-expanded="false" aria-controls="mSolucoes">
+                            Solutions <i class="fa-solid fa-chevron-down text-xs" aria-hidden="true"></i>
+                        </button>
+                        <div id="mSolucoes" class="hidden flex-col gap-3 mt-3 pl-4 border-l border-white/10">
+                            <a href="index.html#solutions">Areas of work</a>
+                            <a href="sophia-app.html">SOPHIA APP</a>
+                            <a href="sophia-samuel.html">SOPHIA SAMUEL</a>
+                            <a href="sophia-amhs.html">SOPHIA AMHS</a>
+                    <a href="sophia-hermod.html">HERMOD</a>
+                        </div>
+                    </div>
                     <a href="contact.html">Contact</a>
                     <a href="/helpdesk/" class="inline-flex items-center gap-2 text-sky-300"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>User Area</a>
                 </div>
@@ -770,6 +828,7 @@
                         <a href="sophia-app.html" class="hover:text-sky-400">SOPHIA APP</a>
                         <a href="sophia-samuel.html" class="hover:text-sky-400">SOPHIA SAMUEL</a>
                         <a href="sophia-amhs.html" class="hover:text-sky-400">SOPHIA AMHS</a>
+                        <a href="sophia-hermod.html" class="hover:text-sky-400">SOPHIA HERMOD</a>
                         <a href="contact.html" class="hover:text-sky-400">Contact</a>
                     </div>
                 </div>
@@ -782,7 +841,7 @@
                 </div>
             </div>
             <div class="border-t border-white/5 pt-8">
-                <p class="text-[10px] text-slate-600 max-w-3xl mb-4 leading-relaxed">SOPHIA is an engineering initiative focused on studying and developing tools that support situational awareness in ATS environments. This material is technical and institutional in nature.</p>
+                <p class="text-[10px] text-slate-600 max-w-3xl mb-4 leading-relaxed">SOPHIA ATC develops engineering systems and solutions for air navigation, data integration and critical operational environments. This material is technical and institutional in nature.</p>
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
                     <span>&copy; 2026 SOPHIA ATC Systems Engineering. All rights reserved.</span>
                     <span>CNPJ 67.177.100/0001-69</span>
@@ -921,6 +980,46 @@
             nav.style.background = 'rgba(30,41,59,0.5)';
         }
     });
+    </script>
+
+    <script>
+    // Dropdown de produtos — mesma navegação do index.html
+    document.querySelectorAll('.nav-dd').forEach(dd => {
+        const toggle = dd.querySelector('.nav-dd-toggle');
+        if (!toggle) return;
+        toggle.addEventListener('click', () => {
+            const open = dd.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    });
+
+    document.addEventListener('click', e => {
+        document.querySelectorAll('.nav-dd.is-open').forEach(dd => {
+            if (!dd.contains(e.target)) {
+                dd.classList.remove('is-open');
+                dd.querySelector('.nav-dd-toggle')?.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.nav-dd.is-open').forEach(dd => {
+                dd.classList.remove('is-open');
+                dd.querySelector('.nav-dd-toggle')?.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+
+    const productMobileSolutionsBtn = document.getElementById('mSolucoesBtn');
+    const productMobileSolutions = document.getElementById('mSolucoes');
+    if (productMobileSolutionsBtn && productMobileSolutions) {
+        productMobileSolutionsBtn.addEventListener('click', () => {
+            const open = productMobileSolutions.classList.toggle('hidden') === false;
+            productMobileSolutions.classList.toggle('flex', open);
+            productMobileSolutionsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
     </script>
 </body>
 </html>

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/sophia-amhs.png">
     <title>SOPHIA AMHS | User Agent de Mensagens Aeronáuticas X.400 P7</title>
-    <meta name="description" content="SOPHIA AMHS User Agent: cliente de Mensagens aeronáutica X.400 P7 com diretório X.500, composição assistida de mensagens ATS, OPMET e AIS, armazenamento local, registro de ações e histórico de eventos auditável.">
-    <meta property="og:title" content="SOPHIA AMHS | User Agent de Mensagens Aeronáutica X.400 P7">
+    <meta name="description" content="SOPHIA AMHS User Agent: cliente de Mensagens aeronáuticas X.400 P7 com diretório X.500, composição assistida de mensagens ATS, OPMET e AIS, armazenamento local, registro de ações e histórico de eventos auditável.">
+    <meta property="og:title" content="SOPHIA AMHS | User Agent de Mensagens Aeronáuticas X.400 P7">
     <meta property="og:description" content="Cliente AMHS X.400 P7 / X.500 com composição assistida de mensagens ATS, OPMET e AIS, armazenamento local e trilha de auditoria completa.">
     <meta property="og:image" content="img/sophia-amhs.png">
     <meta property="og:type" content="website">
@@ -70,6 +70,46 @@
         }
 
         .flow-line:last-child::before { display: none; }
+
+        /* Dropdown de navegação */
+        .nav-dd { position: relative; }
+
+        .nav-dd-panel {
+            position: absolute;
+            top: calc(100% + 0.65rem);
+            left: 0;
+            min-width: 14rem;
+            background: rgba(2, 6, 23, 0.97);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.9rem;
+            padding: 0.5rem;
+            box-shadow: 0 22px 50px -20px rgba(0, 0, 0, 0.85);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            z-index: 50;
+        }
+
+        .nav-dd:hover .nav-dd-panel,
+        .nav-dd:focus-within .nav-dd-panel,
+        .nav-dd.is-open .nav-dd-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dd-link {
+            display: block;
+            padding: 0.6rem 0.75rem;
+            border-radius: 0.55rem;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .nav-dd-link:hover { background: rgba(56, 189, 248, 0.14); color: #fff; }
+
     </style>
 </head>
 <body class="scroll-smooth">
@@ -87,10 +127,19 @@
                     <div class="hidden xl:flex items-center gap-5 text-sm font-medium whitespace-nowrap">
                         <a href="index.html" class="text-slate-400 hover:text-sky-400 transition-colors">Início</a>
                         <a href="about.html" class="text-slate-400 hover:text-sky-400 transition-colors">Sobre nós</a>
-                        <a href="index.html#solucoes" class="text-slate-400 hover:text-sky-400 transition-colors">Soluções</a>
-                        <a href="sophia-app.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA APP</a>
-                        <a href="sophia-samuel.html" class="text-slate-400 hover:text-sky-400 transition-colors">SOPHIA SAMUEL</a>
-                        <a href="sophia-amhs.html" class="text-sky-400 transition-colors">SOPHIA AMHS</a>
+                        <div class="nav-dd">
+                            <button type="button" class="nav-dd-toggle text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">
+                                Soluções <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
+                            </button>
+                            <div class="nav-dd-panel">
+                                <a href="index.html#solucoes" class="nav-dd-link">Áreas de atuação</a>
+                                <div class="my-1 border-t border-white/5"></div>
+                                <a href="sophia-app.html" class="nav-dd-link">SOPHIA APP</a>
+                                <a href="sophia-samuel.html" class="nav-dd-link">SOPHIA SAMUEL</a>
+                                <a href="sophia-amhs.html" class="nav-dd-link">SOPHIA AMHS</a>
+                                <a href="sophia-hermod.html" class="nav-dd-link">SOPHIA HERMOD</a>
+                            </div>
+                        </div>
                         <a href="contato.html" class="text-slate-400 hover:text-sky-400 transition-colors">Contato</a>
                         <a href="/helpdesk/" class="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition-all shadow-lg shadow-sky-900/20">
                             <i class="fa-solid fa-user-shield" aria-hidden="true"></i>Área do Usuário
@@ -107,10 +156,18 @@
                 <div id="mobileMenu" class="hidden xl:hidden absolute top-16 left-0 w-full bg-slate-950/95 border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
                     <a href="index.html">Início</a>
                     <a href="about.html">Sobre nós</a>
-                    <a href="index.html#solucoes">Soluções</a>
-                    <a href="sophia-app.html">SOPHIA APP</a>
-                    <a href="sophia-samuel.html">SOPHIA SAMUEL</a>
-                    <a href="sophia-amhs.html" class="text-sky-400">SOPHIA AMHS</a>
+                    <div>
+                        <button type="button" id="mSolucoesBtn" class="flex items-center justify-between w-full" aria-expanded="false" aria-controls="mSolucoes">
+                            Soluções <i class="fa-solid fa-chevron-down text-xs" aria-hidden="true"></i>
+                        </button>
+                        <div id="mSolucoes" class="hidden flex-col gap-3 mt-3 pl-4 border-l border-white/10">
+                            <a href="index.html#solucoes">Áreas de atuação</a>
+                            <a href="sophia-app.html">SOPHIA APP</a>
+                            <a href="sophia-samuel.html">SOPHIA SAMUEL</a>
+                            <a href="sophia-amhs.html">SOPHIA AMHS</a>
+                    <a href="sophia-hermod.html">HERMOD</a>
+                        </div>
+                    </div>
                     <a href="contato.html">Contato</a>
                     <a href="/helpdesk/" class="inline-flex items-center gap-2 text-sky-300"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>Área do Usuário</a>
                 </div>
@@ -135,6 +192,7 @@
                     <a href="#composicao" class="px-6 py-3 bg-sky-600 hover:bg-sky-500 rounded-xl font-semibold">Ver composição assistida</a>
                     <a href="#auditoria" class="px-6 py-3 border border-sky-300/40 hover:border-sky-300 text-sky-200 rounded-xl font-semibold">Registro de ações e histórico</a>
                     <a href="contato.html" class="px-6 py-3 border border-white/20 hover:border-sky-400 rounded-xl font-semibold text-slate-200">Falar com a equipe</a>
+                    <a href="sophia-hermod.html" class="px-6 py-3 border border-sky-300/30 hover:border-sky-300 rounded-xl font-semibold text-sky-200">Conhecer o HERMOD Server</a>
                 </div>
             </div>
             <div class="glass-card rounded-3xl p-4">
@@ -196,7 +254,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Comunicação AMHS ponta a ponta</p>
             <h2 class="text-3xl lg:text-4xl font-bold mb-4">Implementação nativa da pilha X.400/P7</h2>
-            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">O cliente implementa diretamente os protocolos necessários à comunicação com o servidor AMHS, desde o transporte OSI/ITOT até as operações P7, incluindo sessão, apresentação, ACSE e ROSE. As estruturas de protocolo são codificadas em ASN.1/BER e verificadas por testes de codificação e decodificação.</p>
+            <p class="text-slate-400 max-w-4xl leading-relaxed mb-10">O cliente implementa diretamente os protocolos necessários à comunicação com o servidor AMHS, desde o transporte OSI/ITOT até as operações P7, incluindo sessão, apresentação, ACSE e ROSE. As estruturas de protocolo são codificadas em ASN.1/BER, mantendo consistência entre codificação, decodificação e tratamento das estruturas trocadas com o servidor.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <article class="glass-card rounded-2xl p-6">
                     <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></div>
@@ -225,8 +283,8 @@
                 </article>
                 <article class="glass-card rounded-2xl p-6">
                     <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-vial-circle-check" aria-hidden="true"></i></div>
-                    <h3 class="font-bold mb-2">Codec com rede de segurança</h3>
-                    <p class="text-sm text-slate-400">Todo codificador/decodificador ASN.1/BER tem teste de ida e volta que exercita a mesma forma de fio trocada com o servidor.</p>
+                    <h3 class="font-bold mb-2">Codificação ASN.1/BER</h3>
+                    <p class="text-sm text-slate-400">Camada de codificação e decodificação estruturada para preservar a consistência das estruturas trocadas com o servidor.</p>
                 </article>
             </div>
         </div>
@@ -513,6 +571,7 @@
                         <a href="sophia-app.html" class="hover:text-sky-400">SOPHIA APP</a>
                         <a href="sophia-samuel.html" class="hover:text-sky-400">SOPHIA SAMUEL</a>
                         <a href="sophia-amhs.html" class="hover:text-sky-400">SOPHIA AMHS</a>
+                        <a href="sophia-hermod.html" class="hover:text-sky-400">SOPHIA HERMOD</a>
                         <a href="contato.html" class="hover:text-sky-400">Contato</a>
                     </div>
                 </div>
@@ -525,7 +584,7 @@
                 </div>
             </div>
             <div class="border-t border-white/5 pt-8">
-                <p class="text-[10px] text-slate-600 max-w-3xl mb-4 leading-relaxed">SOPHIA é uma iniciativa de engenharia voltada ao estudo e desenvolvimento de ferramentas de apoio à consciência situacional e à segurança operacional na aviação. Este material possui caráter técnico-institucional. As referências normativas indicam as normas observadas no desenvolvimento e não constituem declaração de certificação ou homologação.</p>
+                <p class="text-[10px] text-slate-600 max-w-3xl mb-4 leading-relaxed">SOPHIA ATC desenvolve sistemas e soluções de engenharia para navegação aérea, integração de dados e ambientes operacionais críticos. Este material possui caráter técnico-institucional. As referências normativas indicam as normas observadas no desenvolvimento e não constituem declaração de certificação ou homologação.</p>
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
                     <span>&copy; 2026 SOPHIA ATC Systems Engineering. Todos os direitos reservados.</span>
                     <span>CNPJ 67.177.100/0001-69</span>
@@ -543,6 +602,46 @@
                 menu.classList.toggle('hidden');
             });
         }
+    </script>
+
+    <script>
+    // Dropdown de produtos — mesma navegação do index.html
+    document.querySelectorAll('.nav-dd').forEach(dd => {
+        const toggle = dd.querySelector('.nav-dd-toggle');
+        if (!toggle) return;
+        toggle.addEventListener('click', () => {
+            const open = dd.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    });
+
+    document.addEventListener('click', e => {
+        document.querySelectorAll('.nav-dd.is-open').forEach(dd => {
+            if (!dd.contains(e.target)) {
+                dd.classList.remove('is-open');
+                dd.querySelector('.nav-dd-toggle')?.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.nav-dd.is-open').forEach(dd => {
+                dd.classList.remove('is-open');
+                dd.querySelector('.nav-dd-toggle')?.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+
+    const productMobileSolutionsBtn = document.getElementById('mSolucoesBtn');
+    const productMobileSolutions = document.getElementById('mSolucoes');
+    if (productMobileSolutionsBtn && productMobileSolutions) {
+        productMobileSolutionsBtn.addEventListener('click', () => {
+            const open = productMobileSolutions.classList.toggle('hidden') === false;
+            productMobileSolutions.classList.toggle('flex', open);
+            productMobileSolutionsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
     </script>
 </body>
 </html>

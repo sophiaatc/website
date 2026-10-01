@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/sophia-hermod.png">
+    <title>SOPHIA HERMOD | Servidor ATSMHS para Mensagens Aeronáuticas</title>
+    <meta name="description" content="SOPHIA HERMOD é o ATS Message Server da suíte SOPHIA: mensagens aeronáuticas X.400 com MTA P1, acessos P3/P7, diretório X.500, roteamento, supervisão e alta disponibilidade opcional.">
+    <meta property="og:title" content="SOPHIA HERMOD | ATS Message Server">
+    <meta property="og:description" content="Uma plataforma integrada para mensagens aeronáuticas AMHS, roteamento MTA, Message Store, diretório e supervisão operacional.">
+    <meta property="og:image" content="img/sophia-hermod.png">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #020617; color: #fff; }
+        .glass-card { background: rgba(15,23,42,.78); border: 1px solid rgba(148,163,184,.18); backdrop-filter: blur(10px); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .language-switch { display:inline-flex; align-items:center; gap:.35rem; padding:.25rem; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:rgba(15,23,42,.7); }
+        .language-option { display:inline-flex; align-items:center; gap:.35rem; padding:.45rem .7rem; border-radius:999px; color:#94a3b8; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; transition:all .3s ease; }
+        .language-option:hover,.language-option.active { color:#fff; background:rgba(56,189,248,.18); }
+        .screen { box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+
+        /* Dropdown de navegação */
+        .nav-dd { position: relative; }
+
+        .nav-dd-panel {
+            position: absolute;
+            top: calc(100% + 0.65rem);
+            left: 0;
+            min-width: 14rem;
+            background: rgba(2, 6, 23, 0.97);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.9rem;
+            padding: 0.5rem;
+            box-shadow: 0 22px 50px -20px rgba(0, 0, 0, 0.85);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            z-index: 50;
+        }
+
+        .nav-dd:hover .nav-dd-panel,
+        .nav-dd:focus-within .nav-dd-panel,
+        .nav-dd.is-open .nav-dd-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dd-link {
+            display: block;
+            padding: 0.6rem 0.75rem;
+            border-radius: 0.55rem;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .nav-dd-link:hover { background: rgba(56, 189, 248, 0.14); color: #fff; }
+
+    </style>
+</head>
+<body class="scroll-smooth">
+    <nav class="fixed w-full z-40 bg-slate-950/90 backdrop-blur-xl border-b border-white/10" aria-label="Início">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex justify-between h-16 items-center gap-3">
+                <a href="index.html" class="flex items-center space-x-2 shrink-0" aria-label="SOPHIA ATC — Início">
+                    <img src="img/sophia-atc-s.png" alt="Logo SOPHIA ATC" class="w-11 h-11 object-contain">
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tighter text-white">SOPHIA <span class="text-sky-400">ATC</span></span>
+                        <span class="hidden lg:block text-[10px] uppercase tracking-[0.24em] text-slate-500 font-semibold">Engenharia de Sistemas para a Aviação</span>
+                    </div>
+                </a>
+                <div class="flex items-center gap-2 lg:gap-3">
+                    <div class="hidden xl:flex items-center gap-5 text-sm font-medium whitespace-nowrap">
+                        <a href="index.html" class="text-slate-400 hover:text-sky-400 transition-colors">Início</a>
+                        <a href="about.html" class="text-slate-400 hover:text-sky-400 transition-colors">Sobre nós</a>
+                        <div class="nav-dd">
+                            <button type="button" class="nav-dd-toggle text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">
+                                Soluções <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
+                            </button>
+                            <div class="nav-dd-panel">
+                                <a href="index.html#solucoes" class="nav-dd-link">Áreas de atuação</a>
+                                <div class="my-1 border-t border-white/5"></div>
+                                <a href="sophia-app.html" class="nav-dd-link">SOPHIA APP</a>
+                                <a href="sophia-samuel.html" class="nav-dd-link">SOPHIA SAMUEL</a>
+                                <a href="sophia-amhs.html" class="nav-dd-link">SOPHIA AMHS</a>
+                                <a href="sophia-hermod.html" class="nav-dd-link">SOPHIA HERMOD</a>
+                            </div>
+                        </div>
+                        <a href="contato.html" class="text-slate-400 hover:text-sky-400 transition-colors">Contato</a>
+                        <a href="/helpdesk/" class="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition-all shadow-lg shadow-sky-900/20">
+                            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>Área do Usuário
+                        </a>
+                    </div>
+                    <div class="language-switch">
+                        <a href="sophia-hermod.html" class="language-option active" aria-label="Versão em português do Brasil"><span>🇧🇷</span><span class="hidden sm:inline">Brasil</span></a>
+                        <a href="en/sophia-hermod.html" class="language-option" aria-label="English version"><span>🇺🇸</span><span class="hidden sm:inline">USA</span></a>
+                    </div>
+                    <button id="menuBtn" class="xl:hidden text-white p-2" type="button" aria-label="Menu" aria-controls="mobileMenu">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div id="mobileMenu" class="hidden xl:hidden absolute top-16 left-0 w-full bg-slate-950/95 border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
+                    <a href="index.html">Início</a>
+                    <a href="about.html">Sobre nós</a>
+                    <div>
+                        <button type="button" id="mSolucoesBtn" class="flex items-center justify-between w-full" aria-expanded="false" aria-controls="mSolucoes">
+                            Soluções <i class="fa-solid fa-chevron-down text-xs" aria-hidden="true"></i>
+                        </button>
+                        <div id="mSolucoes" class="hidden flex-col gap-3 mt-3 pl-4 border-l border-white/10">
+                            <a href="index.html#solucoes">Áreas de atuação</a>
+                            <a href="sophia-app.html">SOPHIA APP</a>
+                            <a href="sophia-samuel.html">SOPHIA SAMUEL</a>
+                            <a href="sophia-amhs.html">SOPHIA AMHS</a>
+                    <a href="sophia-hermod.html">HERMOD</a>
+                        </div>
+                    </div>
+                    <a href="contato.html">Contato</a>
+                    <a href="/helpdesk/" class="inline-flex items-center gap-2 text-sky-300"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>Área do Usuário</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-28 pb-20 relative overflow-hidden">
+        <div class="absolute top-16 -right-24 w-96 h-96 bg-sky-500/15 blur-[130px] rounded-full"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-500/10 blur-[130px] rounded-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-3 mb-5"><img src="img/sophia-hermod.png" alt="Ícone SOPHIA HERMOD" class="w-14 h-14 object-contain"><p class="mono text-xs text-sky-300 uppercase tracking-[0.24em]">ATSMHS · X.400 · X.500</p></div>
+                <h1 class="text-4xl lg:text-6xl font-bold mb-5">SOPHIA <span class="text-sky-300">HERMOD</span></h1>
+                <p class="text-xl text-slate-300 mb-6">Mensagens aeronáuticas, em uma plataforma única.</p>
+                <p class="text-slate-400 leading-relaxed mb-8">HERMOD é o ATS Message Server da suíte SOPHIA. Reúne MTA, Message Store, diretório e supervisão operacional em uma arquitetura Linux voltada à continuidade de serviço e à integração com ambientes AMHS.</p>
+                <div class="flex flex-wrap gap-3"><a href="#architecture" class="px-6 py-3 bg-sky-600 hover:bg-sky-500 rounded-xl font-semibold">Conhecer a arquitetura</a><a href="contato.html" class="px-6 py-3 border border-white/20 hover:border-sky-400 rounded-xl font-semibold text-slate-200">Solicitar apresentação</a></div>
+                <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+                    <div class="rounded-xl border border-white/10 bg-slate-950/60 px-3 py-3"><div class="mono text-xs text-sky-300">P1</div><div class="text-[11px] text-slate-500 mt-1">MTA ↔ MTA</div></div>
+                    <div class="rounded-xl border border-white/10 bg-slate-950/60 px-3 py-3"><div class="mono text-xs text-sky-300">P3</div><div class="text-[11px] text-slate-500 mt-1">MTS Access</div></div>
+                    <div class="rounded-xl border border-white/10 bg-slate-950/60 px-3 py-3"><div class="mono text-xs text-sky-300">P7</div><div class="text-[11px] text-slate-500 mt-1">Message Store</div></div>
+                    <div class="rounded-xl border border-white/10 bg-slate-950/60 px-3 py-3"><div class="mono text-xs text-sky-300">X.500</div><div class="text-[11px] text-slate-500 mt-1">Directory</div></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-3xl p-3 lg:p-4 screen"><img src="img/prints/hermod/overview.webp" alt="Painel de visão geral do SOPHIA HERMOD" class="w-full rounded-2xl border border-white/10 bg-slate-950"></div>
+        </div>
+    </section>
+
+    <section id="architecture" class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-12"><p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Core ATSMHS</p><h2 class="text-3xl lg:text-4xl font-bold mb-4">Os serviços essenciais do AMHS, integrados</h2><p class="text-slate-400 leading-relaxed">Uma base única para transferência, acesso, armazenamento, endereçamento e administração de mensagens aeronáuticas — com configuração centralizada e visão operacional do ambiente.</p></div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <article class="glass-card rounded-2xl p-6"><div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-route"></i></div><h3 class="font-bold mb-2">MTA e roteamento</h3><p class="text-sm text-slate-400 leading-relaxed">Peers P1, rotas por O/R Address, prioridade de rotas e encaminhamento para destinos locais ou remotos.</p></article>
+                <article class="glass-card rounded-2xl p-6"><div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-inbox"></i></div><h3 class="font-bold mb-2">Acesso P3 e P7</h3><p class="text-sm text-slate-400 leading-relaxed">Serviços de acesso ao MTS e ao Message Store para integração com terminais e aplicações AMHS.</p></article>
+                <article class="glass-card rounded-2xl p-6"><div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-address-book"></i></div><h3 class="font-bold mb-2">Diretório X.500</h3><p class="text-sm text-slate-400 leading-relaxed">Catálogo hierárquico de endereços O/R, acesso DAP e interface LDAP complementar para integração e administração.</p></article>
+                <article class="glass-card rounded-2xl p-6"><div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-chart-line"></i></div><h3 class="font-bold mb-2">Supervisão operacional</h3><p class="text-sm text-slate-400 leading-relaxed">Estado dos serviços, estatísticas, eventos, filas, assinantes e infraestrutura reunidos em uma mesma interface.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+            <div class="glass-card rounded-3xl p-3 screen"><img src="img/prints/hermod/p1-topology.webp" alt="Topologia de peers P1 no SOPHIA HERMOD" class="w-full rounded-2xl border border-white/10"></div>
+            <div><p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Unified Management</p><h2 class="text-3xl lg:text-4xl font-bold mb-5">Administração sem perder a visão do sistema</h2><p class="text-slate-400 leading-relaxed mb-6">O WebAdmin apresenta os elementos que importam para a operação técnica: conexões, peers, assinantes, diretório, roteamento, mensagens, estatísticas, eventos e alta disponibilidade.</p><div class="grid sm:grid-cols-2 gap-3 text-sm"><div class="glass-card rounded-xl p-4"><i class="fa-solid fa-network-wired text-sky-300 mr-2"></i>Topologia e status de peers</div><div class="glass-card rounded-xl p-4"><i class="fa-solid fa-users-gear text-sky-300 mr-2"></i>Assinantes e credenciais</div><div class="glass-card rounded-xl p-4"><i class="fa-solid fa-sitemap text-sky-300 mr-2"></i>Diretório e O/R Addresses</div><div class="glass-card rounded-xl p-4"><i class="fa-solid fa-terminal text-sky-300 mr-2"></i>CLI administrativa complementar</div></div></div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-10 items-center">
+                <div><p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Deployment</p><h2 class="text-3xl lg:text-4xl font-bold mb-5">Da implantação compacta ao ambiente redundante</h2><p class="text-slate-400 leading-relaxed mb-7">A arquitetura pode ser dimensionada conforme a necessidade do órgão, preservando a mesma camada de aplicação e administração.</p><div class="space-y-3"><div class="glass-card rounded-xl p-4"><span class="font-semibold text-slate-200">Single node</span><span class="text-slate-500 text-sm"> — aplicação e banco em um único servidor.</span></div><div class="glass-card rounded-xl p-4"><span class="font-semibold text-slate-200">Distributed</span><span class="text-slate-500 text-sm"> — aplicação e banco em hosts separados.</span></div><div class="glass-card rounded-xl p-4"><span class="font-semibold text-slate-200">High Availability</span><span class="text-slate-500 text-sm"> — pares redundantes de aplicação e banco, VIPs de serviço, VRRP e replicação PostgreSQL.</span></div></div></div>
+                <div class="glass-card rounded-3xl p-3 screen"><img src="img/prints/hermod/cluster-topology.webp" alt="Topologia de alta disponibilidade do SOPHIA HERMOD" class="w-full rounded-2xl border border-white/10"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="standards" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12"><p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Standards alignment</p><h2 class="text-3xl lg:text-4xl font-bold mb-4">Engenharia orientada aos padrões da mensagens aeronáuticas</h2><p class="text-slate-400 leading-relaxed">O HERMOD é desenvolvido tendo como referência os perfis e especificações aplicáveis ao ATS Message Handling Service.</p></div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="glass-card rounded-2xl p-6"><div class="mono text-xs text-sky-300 mb-3">ICAO</div><h3 class="font-bold mb-2">Doc 9880</h3><p class="text-sm text-slate-400">Referência técnica para ATSMHS e serviços de diretório no ambiente ATN/OSI.</p></div>
+                <div class="glass-card rounded-2xl p-6"><div class="mono text-xs text-sky-300 mb-3">EUROCONTROL</div><h3 class="font-bold mb-2">EUR Doc 020 · SPEC-0136</h3><p class="text-sm text-slate-400">Referências europeias para perfis e interconexão de sistemas AMHS.</p></div>
+                <div class="glass-card rounded-2xl p-6"><div class="mono text-xs text-sky-300 mb-3">ITU-T</div><h3 class="font-bold mb-2">X.400 Family</h3><p class="text-sm text-slate-400">X.411, X.413 e X.419 para transferência, armazenamento e acesso à mensagens.</p></div>
+                <div class="glass-card rounded-2xl p-6"><div class="mono text-xs text-sky-300 mb-3">OSI / DIRECTORY</div><h3 class="font-bold mb-2">RFC 1006 · X.500</h3><p class="text-sm text-slate-400">Transporte OSI sobre TCP/IP e estrutura de diretório para integração com infraestruturas aeronáuticas.</p></div>
+            </div>
+            <p class="text-[11px] text-slate-600 text-center mt-6">As referências normativas descrevem a base de engenharia observada no desenvolvimento e não constituem declaração de certificação externa.</p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-10"><p class="mono text-xs text-sky-300 uppercase tracking-[0.24em] mb-4">Operational view</p><h2 class="text-3xl lg:text-4xl font-bold mb-4">Clareza para operar e administrar</h2><p class="text-slate-400 leading-relaxed">Uma interface técnica sóbria, voltada a leitura rápida do estado do sistema e administração dos principais objetos do AMHS.</p></div>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="glass-card rounded-2xl p-3"><img src="img/prints/hermod/statistics.webp" alt="Estatísticas do SOPHIA HERMOD" class="w-full rounded-xl border border-white/10"></div>
+                <div class="glass-card rounded-2xl p-3"><img src="img/prints/hermod/directory.webp" alt="Diretório hierárquico X.500 no SOPHIA HERMOD" class="w-full rounded-xl border border-white/10 bg-slate-950"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><img src="img/sophia-hermod.png" alt="SOPHIA HERMOD" class="w-20 h-20 object-contain mx-auto mb-5"><h2 class="text-3xl lg:text-4xl font-bold mb-5">Um núcleo AMHS preparado para crescer com a operação</h2><p class="text-slate-400 leading-relaxed max-w-3xl mx-auto mb-8">HERMOD combina mensagens, roteamento, diretório e supervisão em uma plataforma única, com opções de implantação que atendem desde ambientes compactos até arquiteturas redundantes.</p><div class="flex flex-wrap gap-3 justify-center"><a href="contato.html" class="px-6 py-3 bg-sky-600 hover:bg-sky-500 rounded-xl font-semibold">Falar com a SOPHIA ATC</a><a href="sophia-amhs.html" class="px-6 py-3 border border-white/20 hover:border-sky-400 rounded-xl font-semibold text-slate-200">Conhecer o SOPHIA AMHS UA</a></div></div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr] mb-12"><div><a href="index.html" class="flex items-center space-x-2 mb-4"><img src="img/sophia-atc-s.png" alt="Logo SOPHIA ATC" class="w-10 h-10 object-contain"><span class="text-2xl font-bold text-white">SOPHIA <span class="text-sky-400">ATC</span></span></a><p class="text-slate-500 text-xs max-w-sm">Engenharia dedicada à segurança da navegação aérea e à modernização de infraestruturas críticas.</p></div><div class="text-sm text-slate-500"><h5 class="font-bold mb-4 text-slate-300">Navegação</h5><div class="flex flex-col gap-2"><a href="index.html" class="hover:text-sky-400">Início</a><a href="about.html" class="hover:text-sky-400">Sobre Nós</a><a href="sophia-app.html" class="hover:text-sky-400">SOPHIA APP</a><a href="sophia-samuel.html" class="hover:text-sky-400">SOPHIA SAMUEL</a><a href="sophia-amhs.html" class="hover:text-sky-400">SOPHIA AMHS</a><a href="sophia-hermod.html" class="hover:text-sky-400">SOPHIA HERMOD</a><a href="contato.html" class="hover:text-sky-400">Contato</a></div></div><div class="text-sm text-slate-500"><h5 class="font-bold mb-4 text-slate-300">Suporte</h5><div class="flex flex-col gap-3"><a href="/helpdesk/" class="inline-flex items-center gap-2 text-sky-300 hover:text-sky-200"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>Área do Usuário</a><a href="mailto:contato@sophiaatc.com.br" class="hover:text-sky-400">contato@sophiaatc.com.br</a></div></div></div>
+            <div class="border-t border-white/5 pt-8"><p class="text-[10px] text-slate-600 max-w-3xl mb-4 leading-relaxed">SOPHIA ATC desenvolve sistemas e soluções de engenharia voltados à navegação aérea e a ambientes operacionais críticos. Este material possui caráter técnico-institucional.</p><div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest"><span>&copy; 2026 SOPHIA ATC Systems Engineering. Todos os direitos reservados.</span><span>CNPJ 67.177.100/0001-69</span></div></div>
+        </div>
+    </footer>
+    <script>const btn=document.getElementById('menuBtn');const menu=document.getElementById('mobileMenu');if(btn&&menu){btn.addEventListener('click',()=>menu.classList.toggle('hidden'));}</script>
+
+    <script>
+    // Dropdown de produtos — mesma navegação do index.html
+    document.querySelectorAll('.nav-dd').forEach(dd => {
+        const toggle = dd.querySelector('.nav-dd-toggle');
+        if (!toggle) return;
+        toggle.addEventListener('click', () => {
+            const open = dd.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    });
+
+    document.addEventListener('click', e => {
+        document.querySelectorAll('.nav-dd.is-open').forEach(dd => {
+            if (!dd.contains(e.target)) {
+                dd.classList.remove('is-open');
+                dd.querySelector('.nav-dd-toggle')?.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.nav-dd.is-open').forEach(dd => {
+                dd.classList.remove('is-open');
+                dd.querySelector('.nav-dd-toggle')?.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+
+    const productMobileSolutionsBtn = document.getElementById('mSolucoesBtn');
+    const productMobileSolutions = document.getElementById('mSolucoes');
+    if (productMobileSolutionsBtn && productMobileSolutions) {
+        productMobileSolutionsBtn.addEventListener('click', () => {
+            const open = productMobileSolutions.classList.toggle('hidden') === false;
+            productMobileSolutions.classList.toggle('flex', open);
+            productMobileSolutionsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
+    </script>
+</body>
+</html>
