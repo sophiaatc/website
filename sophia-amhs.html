@@ -232,7 +232,7 @@
                         </div>
                         <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950">
                             <span class="text-slate-400 text-sm">Mensagens</span>
-                            <span class="text-white font-semibold text-sm">ATS · OPMET · AIS</span>
+                            <span class="text-white font-semibold text-sm">ATS · OPMET (TAC/IWXXM) · AIS</span>
                         </div>
                         <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950">
                             <span class="text-slate-400 text-sm">Auditoria</span>
@@ -336,8 +336,8 @@
                 <article class="glass-card rounded-2xl p-6">
                     <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-cloud-sun-rain" aria-hidden="true"></i></div>
                     <h3 class="font-bold mb-2">Mensagens OPMET</h3>
-                    <p class="text-sm text-slate-400 mb-3">Formulário assistido para METAR, SPECI, TAF, SIGMET e AIRMET em formato TAC, montando o cabeçalho abreviado OMM e o corpo codificado. METAR e SPECI recebidos são reconhecidos e abrem decodificados grupo a grupo.</p>
-                    <p class="text-[11px] text-slate-500">Desenvolvido em atendimento às ICA 105-1 / 105-15 / 105-16 / 105-17.</p>
+                    <p class="text-sm text-slate-400 mb-3">Formulário assistido para METAR, SPECI, TAF, SIGMET e AIRMET em formato TAC, montando o cabeçalho abreviado OMM e o corpo codificado. METAR e SPECI recebidos são reconhecidos e abrem decodificados grupo a grupo. Mensagens OPMET recebidas no formato <span class="text-slate-200">IWXXM</span> (XML), o modelo de intercâmbio de informação meteorológica da ICAO, também são interpretadas e apresentadas de forma legível ao operador.</p>
+                    <p class="text-[11px] text-slate-500">Desenvolvido em atendimento às ICA 105-1 / 105-15 / 105-16 / 105-17 e ao ICAO Doc 10003 (IWXXM).</p>
                 </article>
                 <article class="glass-card rounded-2xl p-6">
                     <div class="text-sky-300 text-2xl mb-4"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></div>
@@ -527,6 +527,7 @@
                         <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 105-15</span>
                         <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 105-16</span>
                         <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICA 105-17</span>
+                        <span class="mono text-xs px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10">ICAO Doc 10003 — IWXXM</span>
                     </div>
                 </div>
                 <div class="p-6 grid md:grid-cols-[0.9fr_2fr] gap-4 md:items-center">
@@ -643,5 +644,8 @@
         });
     }
     </script>
+
+    <!-- VLibras Widget — acessibilidade em Língua Brasileira de Sinais -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </body>
 </html>
