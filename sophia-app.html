@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/sophia-app.png">
     <title>SOPHIA APP | Sistema para Controle de Aproximação</title>
-    <meta name="description" content="Conheça o SOPHIA APP: sistema para controle de aproximação com informações aeronáuticas offline, cartas de procedimentos, meteorologia integrada e alertas operacionais.">
+    <meta name="description" content="Conheça o SOPHIA APP: sistema para controle de aproximação com informações aeronáuticas offline, meteorologia integrada, dados de EMS via METDATA, imagens GOES 19 e alertas operacionais.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
@@ -293,15 +293,15 @@
                     </div>
                     <h1 class="text-5xl md:text-6xl font-bold mb-6">SOPHIA <span class="text-emerald-400">APP</span></h1>
                     <p class="text-xl text-slate-400 mb-8 leading-relaxed">
-                        Sistema avançado para Controle de Aproximação (APP) que integra meteorologia de alta resolução, dados operacionais e alertas em tempo real para ampliar a consciência situacional.
+                        Sistema avançado para Controle de Aproximação (APP) que integra dados meteorológicos de superfície da EMS, imagens GOES 19, informações operacionais e alertas em tempo real para ampliar a consciência situacional.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="contato.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-semibold transition-all shadow-xl">
                             Solicitar Demonstração
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="#fluxo-goes" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
-                            Ver Fluxo GOES 19
+                        <a href="#ems-metdata" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                            Ver integração EMS
                         </a>
                     </div>
                 </div>
@@ -339,8 +339,8 @@
                             <span class="text-white font-semibold">APP / TMA</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-950">
-                            <span class="text-slate-400">Fonte meteorológica</span>
-                            <span class="text-white font-semibold">NOAA/GOES 19</span>
+                            <span class="text-slate-400">Fontes meteorológicas</span>
+                            <span class="text-white font-semibold text-right">EMS/METDATA + NOAA/GOES 19</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-950">
                             <span class="text-slate-400">Integração</span>
@@ -379,13 +379,16 @@
                         <article class="album-slide active" data-index="0" data-title="Dashboard operacional" data-caption="Painel principal com visão integrada do cenário e leitura rápida do contexto operacional.">
                             <img src="img/prints/sophiapp/sophiaapp_dashboard.png" alt="Tela principal do dashboard do SOPHIA APP" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-top">
                         </article>
-                        <article class="album-slide" data-index="1" data-title="Camada geoespacial" data-caption="Visualização de mapa e dados espaciais para reforçar a consciência situacional em operação.">
+                        <article class="album-slide" data-index="1" data-title="Meteorologia de superfície — EMS" data-caption="Leitura operacional de vento, pressão, temperatura, visibilidade e demais dados disponibilizados pela Estação Meteorológica de Superfície.">
+                            <img src="img/prints/sophiapp/sophiaapp_awos.png" alt="Tela do SOPHIA APP com dados da Estação Meteorológica de Superfície via METDATA" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-top">
+                        </article>
+                        <article class="album-slide" data-index="2" data-title="Camada geoespacial" data-caption="Visualização de mapa e dados espaciais para reforçar a consciência situacional em operação.">
                             <img src="img/prints/sophiapp/sophiaapp_geo2.png" alt="Visualização geoespacial do SOPHIA APP" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-center">
                         </article>
-                        <article class="album-slide" data-index="2" data-title="Leitura gráfica noturna" data-caption="Apresentação visual de dados em ambiente noturno para leitura rápida e apoio à decisão.">
+                        <article class="album-slide" data-index="3" data-title="Leitura gráfica noturna" data-caption="Apresentação visual de dados em ambiente noturno para leitura rápida e apoio à decisão.">
                             <img src="img/prints/sophiapp/sophiaapp_chart1night.png" alt="Gráfico noturno do SOPHIA APP" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-center">
                         </article>
-                        <article class="album-slide" data-index="3" data-title="Histórico operacional" data-caption="Consulta de registros e eventos do sistema para rastreabilidade e análise posterior.">
+                        <article class="album-slide" data-index="4" data-title="Histórico operacional" data-caption="Consulta de registros e eventos do sistema para rastreabilidade e análise posterior.">
                             <img src="img/prints/sophiapp/sophiaapp_historico.png" alt="Histórico operacional do SOPHIA APP" class="album-image w-full h-[20rem] sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-top">
                         </article>
                     </div>
@@ -422,14 +425,18 @@
                             <span class="block px-4 py-3 text-sm text-slate-200">Dashboard</span>
                         </button>
                         <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="1">
+                            <img src="img/prints/sophiapp/sophiaapp_awos.png" alt="Miniatura da meteorologia de superfície no SOPHIA APP" class="w-full h-28 object-cover object-top">
+                            <span class="block px-4 py-3 text-sm text-slate-200">EMS / METDATA</span>
+                        </button>
+                        <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="2">
                             <img src="img/prints/sophiapp/sophiaapp_geo2.png" alt="Miniatura da visualização geoespacial do SOPHIA APP" class="w-full h-28 object-cover object-center">
                             <span class="block px-4 py-3 text-sm text-slate-200">Geo Airspace</span>
                         </button>
-                        <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="2">
+                        <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="3">
                             <img src="img/prints/sophiapp/sophiaapp_chart1night.png" alt="Miniatura do gráfico noturno do SOPHIA APP" class="w-full h-28 object-cover object-center">
                             <span class="block px-4 py-3 text-sm text-slate-200">Chart Night</span>
                         </button>
-                        <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="3">
+                        <button type="button" class="album-thumb rounded-[1.25rem] overflow-hidden border border-white/10 bg-slate-950 text-left transition-all" data-index="4">
                             <img src="img/prints/sophiapp/sophiaapp_historico.png" alt="Miniatura do histórico operacional do SOPHIA APP" class="w-full h-28 object-cover object-top">
                             <span class="block px-4 py-3 text-sm text-slate-200">Histórico</span>
                         </button>
@@ -519,6 +526,86 @@
                             <p class="text-slate-400 leading-relaxed">As informações podem ser intercambiadas entre PVIAs durante a troca de console operacional ou o agrupamento e desagrupamento de setores, reduzindo retrabalho e preservando a continuidade do contexto.</p>
                         </div>
                     </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="ems-metdata" class="py-24 bg-slate-900/30 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mb-14">
+                <span class="mono text-[10px] uppercase tracking-[0.3em] text-cyan-300">Meteorologia de superfície em tempo operacional</span>
+                <h2 class="text-4xl font-bold mt-4 mb-5">Integração direta com <span class="text-emerald-400">EMS / METDATA</span></h2>
+                <p class="text-slate-400 text-lg leading-relaxed">
+                    O SOPHIA APP passa a integrar dados fornecidos pela <strong class="text-slate-200">Estação Meteorológica de Superfície (EMS)</strong>, com compatibilidade com o protocolo <strong class="text-slate-200">METDATA</strong> e recepção por <strong class="text-slate-200">TCP, UDP ou interface serial</strong>. A informação chega ao posto operacional em uma visualização dedicada, organizada para leitura imediata pelo controlador.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-8 items-start">
+                <figure class="glass-card rounded-[2rem] overflow-hidden border-cyan-500/20">
+                    <div class="p-5 sm:p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div>
+                            <span class="mono text-[10px] uppercase tracking-[0.25em] text-cyan-300">Visualização operacional</span>
+                            <h3 class="text-2xl font-bold mt-2">Dados de pista e condições meteorológicas em um único painel</h3>
+                        </div>
+                        <div class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm font-semibold">
+                            <i class="fa-solid fa-tower-broadcast"></i>
+                            METDATA
+                        </div>
+                    </div>
+                    <img src="img/prints/sophiapp/sophiaapp_awos.png" alt="SOPHIA APP exibindo dados da Estação Meteorológica de Superfície" class="w-full object-contain bg-slate-950">
+                    <figcaption class="p-5 sm:p-6 text-sm text-slate-400 leading-relaxed">
+                        Exemplo de apresentação com rosas de vento por cabeceira, vento instantâneo e médio, QNH, QFE, temperatura do ar, ponto de orvalho e demais parâmetros disponibilizados pela EMS.
+                    </figcaption>
+                </figure>
+
+                <div class="space-y-6">
+                    <div class="glass-card rounded-[2rem] p-7 border-emerald-500/20">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-wind"></i></div>
+                        <h3 class="text-2xl font-bold mb-4">Informação meteorológica essencial</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                            <div class="rounded-xl bg-slate-950 p-4 border border-white/5"><span class="text-slate-300">Vento instantâneo</span></div>
+                            <div class="rounded-xl bg-slate-950 p-4 border border-white/5"><span class="text-slate-300">Vento médio — direção e velocidade</span></div>
+                            <div class="rounded-xl bg-slate-950 p-4 border border-white/5"><span class="text-slate-300">QNH e QFE</span></div>
+                            <div class="rounded-xl bg-slate-950 p-4 border border-white/5"><span class="text-slate-300">Temperatura e ponto de orvalho</span></div>
+                            <div class="rounded-xl bg-slate-950 p-4 border border-white/5"><span class="text-slate-300">Visibilidade / RVR</span></div>
+                            <div class="rounded-xl bg-slate-950 p-4 border border-white/5"><span class="text-slate-300">Umidade, chuva, nuvens e outros dados EMS</span></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-[2rem] p-7 border-sky-500/20">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 shrink-0 rounded-2xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-xl"><i class="fa-solid fa-network-wired"></i></div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-3">Flexibilidade de integração</h3>
+                                <p class="text-slate-400 leading-relaxed">A camada de aquisição pode receber o fluxo METDATA por rede ou interface física, permitindo adaptação à infraestrutura existente da estação sem alterar a lógica de apresentação ao operador.</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3 mt-6 text-center mono text-xs uppercase tracking-wider">
+                            <div class="rounded-xl bg-slate-950 border border-white/5 px-3 py-4 text-cyan-300">TCP</div>
+                            <div class="rounded-xl bg-slate-950 border border-white/5 px-3 py-4 text-cyan-300">UDP</div>
+                            <div class="rounded-xl bg-slate-950 border border-white/5 px-3 py-4 text-cyan-300">Serial</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <article class="glass-card rounded-3xl p-7">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-300 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-gauge-high"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Leitura imediata</h3>
+                    <p class="text-slate-400 leading-relaxed">Parâmetros críticos ficam organizados em blocos de alta legibilidade, com destaque para pressão, vento e condições diretamente associadas à pista.</p>
+                </article>
+                <article class="glass-card rounded-3xl p-7">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-road"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Contexto por cabeceira</h3>
+                    <p class="text-slate-400 leading-relaxed">A visualização pode apresentar rosas de vento associadas às pistas e cabeceiras disponíveis, facilitando a interpretação do componente de vento para a operação.</p>
+                </article>
+                <article class="glass-card rounded-3xl p-7">
+                    <div class="w-12 h-12 rounded-2xl bg-violet-500/10 text-violet-300 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3 class="text-xl font-bold mb-3">EMS + meteorologia remota</h3>
+                    <p class="text-slate-400 leading-relaxed">A informação local da estação complementa as camadas meteorológicas de maior escala do SOPHIA GEO, reunindo observação de superfície e visão satelital no mesmo ecossistema.</p>
                 </article>
             </div>
         </div>
@@ -688,7 +775,7 @@
                 <div class="glass-card rounded-3xl p-8">
                     <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-cloud"></i></div>
                     <h3 class="text-2xl font-bold mb-3">Meteorologia Integrada</h3>
-                    <p class="text-slate-400 leading-relaxed">Acesso direto a dados meteorológicos de alta resolução com apoio do satélite GOES 19, ampliando a previsibilidade do cenário operacional.</p>
+                    <p class="text-slate-400 leading-relaxed">Integra dados de superfície da EMS via METDATA — incluindo vento, pressão e temperatura — com as camadas meteorológicas do GOES 19, ampliando a leitura local e regional do cenário.</p>
                 </div>
                 <div class="glass-card rounded-3xl p-8">
                     <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-map-location-dot"></i></div>
@@ -716,8 +803,12 @@
                             <span class="font-semibold text-white">Tempo real</span>
                         </div>
                         <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
-                            <span class="text-slate-400">Fonte meteorológica</span>
-                            <span class="font-semibold text-white">Satélite GOES 19 (netCDF4)</span>
+                            <span class="text-slate-400">Fontes meteorológicas</span>
+                            <span class="font-semibold text-white text-right">EMS/METDATA + GOES 19 (netCDF4)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <span class="text-slate-400">Interfaces EMS</span>
+                            <span class="font-semibold text-white">TCP / UDP / Serial</span>
                         </div>
                         <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-white/5">
                             <span class="text-slate-400">Auditoria</span>
@@ -1020,5 +1111,8 @@
         });
     }
     </script>
+
+    <!-- VLibras Widget — acessibilidade em Língua Brasileira de Sinais -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </body>
 </html>
